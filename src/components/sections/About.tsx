@@ -1,7 +1,7 @@
 import { portfolioData } from "@/data/portfolio";
 
 export function About() {
-  const { sectionCopy, profile, skillGroups } = portfolioData;
+  const { sectionCopy, profile, skillGroups, aboutDetails } = portfolioData;
 
   return (
     <section aria-labelledby="about-title" className="border-b border-line py-16 sm:py-20 lg:py-24" id="about">
@@ -11,6 +11,14 @@ export function About() {
           <h2 className="section-title mt-3 font-display text-4xl font-extrabold text-ink sm:text-5xl" id="about-title">{sectionCopy.about.title}</h2>
           <p className="mt-6 max-w-[470px] text-base leading-7 text-muted">{profile.extendedBio}</p>
           <p className="mt-5 max-w-[470px] text-sm leading-6 text-muted">{sectionCopy.about.description}</p>
+          <dl className="mt-8 grid max-w-[500px] grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-5">
+            {aboutDetails.map((detail) => (
+              <div key={detail.label}>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#7C8491]">{detail.label}</dt>
+                <dd className="mt-1 text-sm font-semibold text-ink">{detail.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2">

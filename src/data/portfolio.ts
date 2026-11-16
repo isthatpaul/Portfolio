@@ -39,6 +39,14 @@ export interface ExperienceItem {
   current?: boolean;
 }
 
+export interface LifeItem {
+  id: string;
+  title: string;
+  summary: string;
+  tags: string[];
+  icon: IconName;
+}
+
 export const portfolioData = {
   profile: {
     name: "Paul Martin Ryan Alipio Crisologo",
@@ -109,6 +117,48 @@ export const portfolioData = {
       submitLabel: "Get in touch",
       successMessage: "Thanks — your note is ready to send.",
     },
+  },
+  aboutDetails: [
+    { label: "Degree", value: "Computer Science · Software Technology" },
+    { label: "University", value: "De La Salle University" },
+    { label: "Class", value: "2028" },
+    { label: "Based", value: "Manila, Philippines" },
+  ],
+  life: {
+    eyebrow: "Outside the build",
+    title: "Life and all",
+    description: "A flexible space for the interests, experiments, and campus moments that sit around the work.",
+    status: "Scaffold ready",
+    items: [
+      {
+        id: "formula-1-telemetry",
+        title: "Formula 1 telemetry",
+        summary: "A future notebook for race data, strategy, and performance patterns.",
+        tags: ["Data", "Strategy"],
+        icon: "chart",
+      },
+      {
+        id: "pickleball",
+        title: "Pickleball",
+        summary: "A place for notes on play, practice, and the small rituals that keep learning fun.",
+        tags: ["Movement", "Practice"],
+        icon: "route",
+      },
+      {
+        id: "hackathons",
+        title: "Hackathons",
+        summary: "A running shelf for fast prototypes, team experiments, and ideas worth testing.",
+        tags: ["Build", "Collaborate"],
+        icon: "briefcase",
+      },
+      {
+        id: "campus-life",
+        title: "Campus life",
+        summary: "A future collection of the communities, events, and people that make DLSU feel alive.",
+        tags: ["Community", "DLSU"],
+        icon: "users",
+      },
+    ] satisfies LifeItem[],
   },
   filters: ["All", "AI & Research", "Software & Systems", "Data Analytics"] as const,
   skills: {

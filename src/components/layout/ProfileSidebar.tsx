@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight, FileText, Linkedin, MapPin, GraduationCap } from "lucide-react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { portfolioData } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
@@ -9,6 +10,7 @@ import { Icon } from "@/components/ui/Icon";
 export function ProfileSidebar() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<string>(pathname === "/" ? "/" : pathname);
+  const [avatarFailed, setAvatarFailed] = useState(false);
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -45,14 +47,28 @@ export function ProfileSidebar() {
       <aside className="hidden border-r border-line bg-white shadow-rail lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-[300px] lg:flex-col lg:items-center lg:p-8 lg:pb-16 lg:text-center">
         <div className="flex w-full flex-col items-center">
           <div className="avatar-wash relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-line">
-            <svg aria-hidden="true" className="absolute inset-0 h-full w-full" viewBox="0 0 260 260" fill="none">
-              <path d="M28 211C52 168 96 148 128 148C165 148 204 171 232 211" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
-              <path d="M65 102C67 67 92 44 129 44C166 44 191 67 193 102" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
-              <circle cx="130" cy="111" r="47" stroke="#141824" strokeWidth="2" opacity=".16" />
-              <path d="M103 111C111 120 121 124 130 124C139 124 149 120 157 111" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
-              <path d="M99 98C106 92 114 90 120 92M140 92C147 90 155 92 161 98" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
-            </svg>
-            <span className="relative z-10 font-script text-7xl font-semibold tracking-tight text-ink">{portfolioData.profile.monogram}</span>
+            {avatarFailed ? (
+              <>
+                <svg aria-hidden="true" className="absolute inset-0 h-full w-full" viewBox="0 0 260 260" fill="none">
+                  <path d="M28 211C52 168 96 148 128 148C165 148 204 171 232 211" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
+                  <path d="M65 102C67 67 92 44 129 44C166 44 191 67 193 102" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
+                  <circle cx="130" cy="111" r="47" stroke="#141824" strokeWidth="2" opacity=".16" />
+                  <path d="M103 111C111 120 121 124 130 124C139 124 149 120 157 111" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
+                  <path d="M99 98C106 92 114 90 120 92M140 92C147 90 155 92 161 98" stroke="#141824" strokeWidth="2" strokeLinecap="round" opacity=".16" />
+                </svg>
+                <span className="relative z-10 font-script text-7xl font-semibold tracking-tight text-ink">{portfolioData.profile.monogram}</span>
+              </>
+            ) : (
+              <Image
+                alt={`${portfolioData.profile.name} portrait`}
+                className="h-full w-full object-cover object-center"
+                fill
+                priority
+                sizes="112px"
+                src={portfolioData.personal.avatarUrl}
+                onError={() => setAvatarFailed(true)}
+              />
+            )}
           </div>
 
           <div className="mt-5 space-y-2">

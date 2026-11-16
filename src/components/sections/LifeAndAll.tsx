@@ -5,7 +5,7 @@ export function LifeAndAll() {
   const { life } = portfolioData;
 
   return (
-    <section aria-labelledby="life-title" className="border-b border-line py-16 sm:py-20 lg:py-24" id="life">
+    <section aria-labelledby="life-title" className="py-16 sm:py-20 lg:py-24" id="life">
       <div className="max-w-[850px]">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>

@@ -109,7 +109,7 @@ export const portfolioData = {
     emailLabel: "Email",
     linkedinLabel: "LinkedIn",
     githubLabel: "GitHub",
-    metadata: "Engineered with curiosity. Built in Manila.",
+    metadata: "Engineered with curiosity. Vibecoded with love.",
     backToTop: "Back to top ↑",
   },
   about: {

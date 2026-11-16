@@ -8,14 +8,14 @@ interface PortfolioShellProps {
 
 export function PortfolioShell({ children }: PortfolioShellProps) {
   return (
-    <div className="min-h-screen lg:grid lg:grid-cols-[300px_minmax(0,1fr)]">
+    <div className="min-h-screen lg:grid lg:grid-cols-[300px_minmax(0,1fr)]" id="top">
       <ProfileSidebar />
-      <main className="min-w-0">
-        <div className="mx-auto w-full max-w-[1120px] px-4 pb-16 pt-4 sm:px-8 lg:px-12 lg:pb-24 lg:pt-7">
+      <main className="flex min-w-0 flex-col">
+        <div className="mx-auto w-full max-w-5xl flex-1 px-6 pb-20 pt-10 sm:px-12">
           <Navbar />
           {children}
-          <Footer />
         </div>
+        <Footer />
       </main>
     </div>
   );

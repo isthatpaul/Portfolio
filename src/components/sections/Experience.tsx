@@ -9,7 +9,7 @@ export function Experience() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section aria-labelledby="experience-title" className="border-b border-line py-16 sm:py-20 lg:py-24" id="experience">
+    <section aria-labelledby="experience-title" className="py-16 sm:py-20 lg:py-24" id="experience">
       <div className="max-w-[850px]">
         <p className="eyebrow">{sectionCopy.experience.eyebrow}</p>
         <h2 className="section-title mt-3 font-display text-4xl font-extrabold text-ink sm:text-5xl" id="experience-title">{sectionCopy.experience.title}</h2>

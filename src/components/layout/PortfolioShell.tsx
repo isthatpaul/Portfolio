@@ -1,4 +1,5 @@
 import { ProfileSidebar } from "@/components/layout/ProfileSidebar";
+import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 
 interface PortfolioShellProps {
@@ -13,6 +14,7 @@ export function PortfolioShell({ children }: PortfolioShellProps) {
         <div className="mx-auto w-full max-w-[1120px] px-4 pb-16 pt-4 sm:px-8 lg:px-12 lg:pb-24 lg:pt-7">
           <Navbar />
           {children}
+          <Footer />
         </div>
       </main>
     </div>

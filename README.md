@@ -65,6 +65,4 @@ public/assets/           Profile, Life gallery, and resume assets
 .github/workflows/       GitHub Pages deployment workflow
 ```
 
-## Note
 
-The resume path is prepared at `public/assets/resume/resume.pdf`. Add the final PDF there when ready; the next push to `main` will redeploy the site automatically.

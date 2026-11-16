@@ -1,11 +1,11 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { portfolioData, sitePath } from "@/data/portfolio";
+import { useActiveNav } from "@/components/layout/useActiveNav";
 
 export function Navbar() {
-  const pathname = usePathname();
+  const activeHref = useActiveNav();
 
   return (
     <div className="mb-10 hidden grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 lg:grid">
@@ -13,12 +13,12 @@ export function Navbar() {
 
       <nav aria-label="Primary portfolio navigation" className="flex items-center gap-1 rounded-full border border-line bg-white/80 p-1 shadow-card">
         {portfolioData.topNavigation.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = activeHref === item.href;
 
           return (
             <a
               aria-current={isActive ? "page" : undefined}
-              className={`whitespace-nowrap rounded-full px-4 py-2 text-xs font-bold transition-colors duration-200 ${isActive ? "bg-[#F5F1EB] text-ink" : "text-muted hover:bg-[#F5F1EB] hover:text-ink"}`}
+              className={`whitespace-nowrap rounded-full px-4 py-2 text-xs font-bold transition-colors duration-200 ${isActive ? "bg-[#141824] text-white" : "text-muted hover:bg-[#F5F1EB] hover:text-ink"}`}
               href={sitePath(item.href)}
               key={item.href}
             >

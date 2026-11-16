@@ -1,46 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowUpRight, FileText, Linkedin, MapPin, GraduationCap } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { portfolioData, sitePath } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
+import { useActiveNav } from "@/components/layout/useActiveNav";
 
 export function ProfileSidebar() {
-  const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState<string>(pathname === "/" ? "/" : pathname);
+  const activeSection = useActiveNav();
   const [avatarFailed, setAvatarFailed] = useState(false);
-
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActiveSection(pathname);
-      return;
-    }
-
-    const sections = portfolioData.topNavigation
-      .filter((item) => item.href.startsWith("/#"))
-      .map((item) => document.querySelector(item.href.slice(1)))
-      .filter((section): section is Element => Boolean(section));
-
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target.id) {
-          setActiveSection(`/#${visible.target.id}`);
-        }
-      },
-      { rootMargin: "-18% 0px -68%", threshold: [0.08, 0.3, 0.6] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [pathname]);
 
   return (
     <>
@@ -101,7 +70,7 @@ export function ProfileSidebar() {
                   <li className="w-full" key={item.href}>
                     <a
                       aria-current={isActive ? "page" : undefined}
-                      className={`flex min-h-11 w-full items-center justify-start gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors duration-200 ${isActive ? "bg-accent text-ink" : "text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
+                      className={`relative flex min-h-11 w-full items-center justify-start gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink before:absolute before:left-0 before:top-1/2 before:h-5 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-[#141824]" : "font-semibold text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
                       href={sitePath(item.href)}
                     >
                       <Icon name={item.icon} size={16} />
@@ -131,7 +100,12 @@ export function ProfileSidebar() {
             const isActive = activeSection === item.href;
 
             return (
-              <a className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs font-semibold ${isActive ? "bg-accent text-ink" : "text-muted"}`} href={sitePath(item.href)} key={item.href}>
+              <a
+                aria-current={isActive ? "page" : undefined}
+                className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink" : "font-semibold text-muted"}`}
+                href={sitePath(item.href)}
+                key={item.href}
+              >
                 {item.label}
               </a>
             );

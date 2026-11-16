@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { portfolioData, sitePath } from "@/data/portfolio";
 
@@ -19,35 +19,34 @@ export function About() {
   return (
     <section aria-labelledby="about-title" className="py-16 sm:py-20 lg:py-24" id="about">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[280px_1fr] lg:gap-12">
-        <div className="relative mx-auto w-full max-w-[280px] px-8 pb-10 pt-0 lg:mx-0">
-          <div className="relative z-0 aspect-[4/5] overflow-hidden rounded-[46%_54%_60%_40%/42%_48%_52%_58%] border border-[#E8D883] bg-[#FEF08A]">
-            {portraitSource === "fallback" ? (
-              <>
-                <div className="absolute inset-5 flex items-center justify-center rounded-[42%_58%_48%_52%/54%_44%_56%_46%] border border-[#FACC15] bg-[#FFFCE2]">
+        <div className="relative mx-auto h-72 w-full max-w-[320px] lg:mx-0 sm:h-80">
+          <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 sm:h-64 sm:w-64">
+            <div className="relative h-full w-full overflow-hidden rounded-full bg-[#FEF08A] ring-4 ring-white shadow-sm">
+              {portraitSource === "fallback" ? (
+                <div className="absolute inset-0 flex items-center justify-center">
                   <span className="font-script text-8xl font-semibold tracking-tight text-ink">{portfolioData.profile.monogram}</span>
                 </div>
-                <span className="absolute bottom-5 left-0 right-0 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-[#6D5D16]">portrait placeholder</span>
-              </>
-            ) : (
-              <Image
-                key={portraitSource}
-                alt={`${portfolioData.profile.name} portrait`}
-                className="h-full w-full object-cover object-center"
-                fill
-                sizes="280px"
-                src={portraitSource === "about" ? personal.aboutPhotoUrl : personal.avatarUrl}
-                onError={handlePortraitError}
-              />
-            )}
+              ) : (
+                <Image
+                  key={portraitSource}
+                  alt={`${portfolioData.profile.name} portrait`}
+                  className="h-full w-full object-cover object-top"
+                  fill
+                  sizes="(max-width: 639px) 224px, 256px"
+                  src={portraitSource === "about" ? personal.aboutPhotoUrl : personal.avatarUrl}
+                  onError={handlePortraitError}
+                />
+              )}
+            </div>
+            <svg aria-hidden="true" className="pointer-events-none absolute -inset-8 z-20 h-[calc(100%+4rem)] w-[calc(100%+4rem)] text-[#525866]" fill="none" viewBox="0 0 320 320">
+              <defs>
+                <path d="M 160 160 m -144 0 a 144 144 0 1 1 288 0 a 144 144 0 1 1 -288 0" id="about-motto-path" />
+              </defs>
+              <text fill="currentColor" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="2.1">
+                <textPath href="#about-motto-path" startOffset="2%">{about.motto}</textPath>
+              </text>
+            </svg>
           </div>
-          <svg aria-hidden="true" className="pointer-events-none absolute -inset-2 z-20 h-[calc(100%+1rem)] w-[calc(100%+1rem)] text-[#6D5D16]" fill="none" viewBox="0 0 300 330">
-            <defs>
-              <path d="M 150 165 m -126 0 a 126 126 0 1 1 252 0 a 126 126 0 1 1 -252 0" id="about-motto-path" />
-            </defs>
-            <text fill="currentColor" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="2.3">
-              <textPath href="#about-motto-path" startOffset="2%">{about.motto}</textPath>
-            </text>
-          </svg>
         </div>
 
         <div>
@@ -84,20 +83,6 @@ export function About() {
             </ul>
           </div>
 
-          <div className="mt-12 border-t border-line pt-8">
-            <p className="font-display text-xl font-extrabold tracking-[-0.05em] text-ink sm:text-2xl">{about.signoff}</p>
-            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-semibold text-ink">
-              <a className="inline-flex items-center gap-2 transition-colors hover:text-[#7C8491]" href={portfolioData.links.linkedin} rel="noreferrer" target="_blank">
-                <Linkedin aria-hidden="true" size={16} /> {about.linkLabels.linkedin}
-              </a>
-              <a className="inline-flex items-center gap-2 transition-colors hover:text-[#7C8491]" href={portfolioData.links.github} rel="noreferrer" target="_blank">
-                <Github aria-hidden="true" size={16} /> {about.linkLabels.github}
-              </a>
-              <a className="inline-flex items-center gap-2 transition-colors hover:text-[#7C8491]" href={`mailto:${portfolioData.links.email}`}>
-                <Mail aria-hidden="true" size={16} /> {about.linkLabels.email}
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

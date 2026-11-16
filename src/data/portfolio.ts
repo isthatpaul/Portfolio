@@ -162,6 +162,12 @@ export const portfolioData = {
     title: "Life and all",
     description: "A flexible space for the interests, experiments, and campus moments that sit around the work.",
     status: "Scaffold ready",
+    galleryHeadline: "Between commits, courts, and campus.",
+    gallerySubtitle: "A small scrapbook of the people, places, and detours that keep the work human.",
+    galleryNote: "The work is the throughline. The rest is life.",
+    filterLabel: "Filter life moments",
+    previewLabel: "Open photo preview",
+    closePreviewLabel: "Close photo preview",
     items: [
       {
         id: "formula-1-telemetry",

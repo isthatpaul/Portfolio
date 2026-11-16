@@ -1,20 +1,46 @@
+"use client";
+
+import Image from "next/image";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 
 export function About() {
-  const { about } = portfolioData;
+  const { about, personal } = portfolioData;
+  const [portraitSource, setPortraitSource] = useState<"about" | "avatar" | "fallback">("about");
+
+  const handlePortraitError = () => {
+    setPortraitSource((currentSource) => {
+      if (currentSource === "about") return "avatar";
+      return "fallback";
+    });
+  };
 
   return (
     <section aria-labelledby="about-title" className="py-16 sm:py-20 lg:py-24" id="about">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[280px_1fr] lg:gap-12">
         <div className="relative mx-auto w-full max-w-[280px] px-8 pb-10 pt-0 lg:mx-0">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[46%_54%_60%_40%/42%_48%_52%_58%] border border-[#E8D883] bg-[#FEF08A]">
-            <div className="absolute inset-5 flex items-center justify-center rounded-[42%_58%_48%_52%/54%_44%_56%_46%] border border-[#FACC15] bg-[#FFFCE2]">
-              <span className="font-script text-8xl font-semibold tracking-tight text-ink">{portfolioData.profile.monogram}</span>
-            </div>
-            <span className="absolute bottom-5 left-0 right-0 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-[#6D5D16]">portrait placeholder</span>
+          <div className="relative z-0 aspect-[4/5] overflow-hidden rounded-[46%_54%_60%_40%/42%_48%_52%_58%] border border-[#E8D883] bg-[#FEF08A]">
+            {portraitSource === "fallback" ? (
+              <>
+                <div className="absolute inset-5 flex items-center justify-center rounded-[42%_58%_48%_52%/54%_44%_56%_46%] border border-[#FACC15] bg-[#FFFCE2]">
+                  <span className="font-script text-8xl font-semibold tracking-tight text-ink">{portfolioData.profile.monogram}</span>
+                </div>
+                <span className="absolute bottom-5 left-0 right-0 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-[#6D5D16]">portrait placeholder</span>
+              </>
+            ) : (
+              <Image
+                key={portraitSource}
+                alt={`${portfolioData.profile.name} portrait`}
+                className="h-full w-full object-cover object-center"
+                fill
+                sizes="280px"
+                src={portraitSource === "about" ? personal.aboutPhotoUrl : personal.avatarUrl}
+                onError={handlePortraitError}
+              />
+            )}
           </div>
-          <svg aria-hidden="true" className="pointer-events-none absolute -inset-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] text-[#6D5D16]" fill="none" viewBox="0 0 300 330">
+          <svg aria-hidden="true" className="pointer-events-none absolute -inset-2 z-20 h-[calc(100%+1rem)] w-[calc(100%+1rem)] text-[#6D5D16]" fill="none" viewBox="0 0 300 330">
             <defs>
               <path d="M 150 165 m -126 0 a 126 126 0 1 1 252 0 a 126 126 0 1 1 -252 0" id="about-motto-path" />
             </defs>

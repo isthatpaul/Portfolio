@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "../../design-system/paul-crisologo-career-portfolio/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-background);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--color-background);
+  background-image: radial-gradient(#E5E0D8 1px, transparent 1px);
+  background-position: 0 0;
+  background-size: 24px 24px;
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.24);
+  color: var(--color-foreground);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
+}
+
+.section-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.hairline {
+  border-color: var(--color-border);
+}
+
+.eyebrow {
+  color: var(--color-muted-foreground-strong);
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.script-accent {
+  font-family: var(--font-script);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.highlight-sky,
+.highlight-amber {
+  position: relative;
+  isolation: isolate;
+}
+
+.highlight-sky::before,
+.highlight-amber::before {
+  position: absolute;
+  z-index: -1;
+  inset: 42% -0.18em 6% -0.18em;
+  border-radius: 45% 55% 48% 52%;
+  content: "";
+  transform: rotate(-1.5deg);
+}
+
+.highlight-sky::before { background: var(--color-accent); }
+.highlight-amber::before { background: var(--color-highlight-amber); }
+
+.paper-rule {
+  border-color: var(--color-border);
+  border-top-width: 1px;
+}
+
+.section-title {
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.avatar-wash {
+  background: radial-gradient(circle at 30% 28%, #E0F2FE 0 18%, transparent 19%),
+    radial-gradient(circle at 72% 68%, #FEF3C7 0 23%, transparent 24%),
+    #F8FBFC;
+}
+
+@media (max-width: 640px) {
+  .section-shell {
+    width: min(100% - 32px, 1180px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

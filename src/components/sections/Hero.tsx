@@ -9,7 +9,7 @@ export function Hero() {
   const { profile, hero } = portfolioData;
 
   return (
-    <section aria-labelledby="hero-title" className="border-b border-line pb-16 pt-6 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-10" id="about">
+    <section aria-labelledby="hero-title" className="border-b border-line pb-16 pt-6 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-10" id="hero">
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(300px,.95fr)] lg:gap-10">
         <div>
           <motion.p

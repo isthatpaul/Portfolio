@@ -131,6 +131,12 @@ export const portfolioData = {
     dataAndMl: ["Data Analysis", "Machine Learning", "SHAP", "Clustering", "Feature Engineering", "Visualization"],
     tools: ["Git", "GitHub", "Jupyter", "Postman", "Figma", "LaTeX"],
   },
+  skillGroups: [
+    { label: "Languages", items: ["Python", "Java", "JavaScript", "TypeScript", "SQL", "C"] },
+    { label: "Frameworks", items: ["React", "Next.js", "Node.js", "Express", "Pandas", "scikit-learn"] },
+    { label: "Data & ML", items: ["Data Analysis", "Machine Learning", "SHAP", "Clustering", "Feature Engineering", "Visualization"] },
+    { label: "Developer Tools", items: ["Git", "GitHub", "Jupyter", "Postman", "Figma", "LaTeX"] },
+  ],
   academicWorks: [
     {
       id: "f1-predictive-model",

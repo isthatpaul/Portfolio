@@ -7,7 +7,6 @@ import {
   Database,
   FileText,
   GraduationCap,
-  HeartPulse,
   Mail,
   Route,
   UsersRound,
@@ -16,7 +15,6 @@ import type { IconName } from "@/data/portfolio";
 
 const icons: Record<IconName, LucideIcon> = {
   brain: BrainCircuit,
-  "heart-pulse": HeartPulse,
   chart: BarChart3,
   "file-text": FileText,
   database: Database,

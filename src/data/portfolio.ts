@@ -2,7 +2,6 @@ export type AcademicWorkCategory = "AI & Research" | "Software & Systems" | "Dat
 
 export type IconName =
   | "brain"
-  | "heart-pulse"
   | "chart"
   | "file-text"
   | "database"
@@ -37,15 +36,7 @@ export interface ExperienceItem {
   impact: string[];
   tags: string[];
   icon: IconName;
-}
-
-export interface ReferenceItem {
-  id: string;
-  type: string;
-  name: string;
-  context: string;
-  note: string;
-  availability: string;
+  current?: boolean;
 }
 
 export const portfolioData = {
@@ -57,7 +48,7 @@ export const portfolioData = {
     location: "Manila, Philippines",
     education: "De La Salle University '28",
     degree: "Computer Science · Software Technology",
-    greeting: "Hi, I'm Paul — CS & Data Science @ DLSU",
+    greeting: "Hi, I'm Paul — CS @ DLSU",
     bio: "I'm a Computer Science undergraduate at De La Salle University, majoring in Software Technology. I build practical, thoughtful software and enjoy working at the intersection of data, systems, and machine learning.",
     extendedBio: "I like turning complex questions into clear, usable tools — from predictive models and explainable analytics to dependable software systems. My work is grounded in curiosity, careful reasoning, and a desire to make technical ideas useful to real people.",
   },
@@ -71,13 +62,11 @@ export const portfolioData = {
     { label: "About", href: "#about", icon: "users" as IconName },
     { label: "Academic Works", href: "#academic-works", icon: "file-text" as IconName },
     { label: "Experience", href: "#experience", icon: "briefcase" as IconName },
-    { label: "References", href: "#references", icon: "users" as IconName },
     { label: "Contact", href: "#contact", icon: "mail" as const },
   ],
   topNavigation: [
     { label: "Work", href: "#academic-works" },
     { label: "Experience", href: "#experience" },
-    { label: "References", href: "#references" },
     { label: "About", href: "#about" },
   ],
   hero: {
@@ -108,11 +97,6 @@ export const portfolioData = {
       eyebrow: "Where I show up",
       title: "Experience",
       description: "Work, volunteer, and leadership experiences that have shaped how I collaborate, learn, and deliver.",
-    },
-    references: {
-      eyebrow: "People and context",
-      title: "References",
-      description: "Professional and academic recommendation context is available for conversations that need more detail.",
     },
     contact: {
       eyebrow: "Let's make something useful",
@@ -150,17 +134,6 @@ export const portfolioData = {
       outcomes: ["Predictive modeling workflow", "Feature comparison", "Research-style reporting"],
     },
     {
-      id: "heart-disease-shap",
-      title: "Heart Disease SHAP Tool",
-      context: "Explainable ML study",
-      category: "AI & Research",
-      summary: "An interactive model interpretation tool that shows how individual features influence heart disease predictions.",
-      details: "The project pairs a classification model with SHAP explanations so that a user can move from a prediction to the contributing signals behind it. It emphasizes clarity, careful framing, and responsible interpretation.",
-      icon: "heart-pulse",
-      tags: ["Python", "SHAP", "Classification"],
-      outcomes: ["Explainable predictions", "Feature contribution views", "Responsible model framing"],
-    },
-    {
       id: "tmdb-clustering",
       title: "TMDB Clustering",
       context: "Data mining & analytics",
@@ -172,19 +145,8 @@ export const portfolioData = {
       outcomes: ["Segmented film profiles", "Exploratory analysis", "Visual cluster comparison"],
     },
     {
-      id: "react-pdf-annotator",
-      title: "React PDF Annotator",
-      context: "Software engineering project",
-      category: "Software & Systems",
-      summary: "A browser-based PDF reading experience with annotation interactions designed around focused study workflows.",
-      details: "The project explores how a document interface can keep reading, highlighting, and note-taking in one place. The implementation prioritizes understandable interaction states and a component structure that can grow with the product.",
-      icon: "file-text",
-      tags: ["React", "TypeScript", "PDF.js"],
-      outcomes: ["Document viewing flow", "Annotation interactions", "Reusable UI components"],
-    },
-    {
       id: "utility-billing-schema",
-      title: "Utility Billing Schema",
+      title: "Public Utility Billing System",
       context: "Database management systems",
       category: "Software & Systems",
       summary: "A relational data model for utility billing, customer accounts, usage records, and payment history.",
@@ -207,26 +169,16 @@ export const portfolioData = {
   ] satisfies AcademicWork[],
   experience: [
     {
-      id: "upwork-data-scientist",
-      organization: "Upwork",
-      role: "Freelance Data Scientist",
-      date: "Current",
-      location: "Remote",
-      summary: "Independent data-science work focused on helping clients turn datasets into clear analysis and useful next steps.",
-      impact: ["Translated open-ended questions into structured analysis plans.", "Built reproducible Python workflows for cleaning, exploration, and reporting.", "Communicated technical findings in a way that supported practical decisions."],
-      tags: ["Data Science", "Python", "Communication"],
-      icon: "briefcase",
-    },
-    {
       id: "dlsu-data-science-society",
       organization: "DLSU Data Science Society",
-      role: "Associate",
-      date: "Academic organization",
+      role: "Associate for Data and Research",
+      date: "Oct 2026 – Present",
       location: "De La Salle University",
       summary: "A student organization role centered on learning, community, and the practical application of data science.",
       impact: ["Contributed to a student community around data and analytics.", "Supported collaborative learning and technical initiatives.", "Practiced communicating data concepts to a wider student audience."],
       tags: ["Data Science", "Community", "Leadership"],
       icon: "users",
+      current: true,
     },
     {
       id: "dlsu-tech-summit",
@@ -251,32 +203,6 @@ export const portfolioData = {
       icon: "graduation-cap",
     },
   ] satisfies ExperienceItem[],
-  references: [
-    {
-      id: "academic-reference",
-      type: "Academic",
-      name: "Faculty reference",
-      context: "De La Salle University · Computer Science",
-      note: "Recommendation context available for conversations about academic performance, technical growth, and project work.",
-      availability: "Available on request",
-    },
-    {
-      id: "professional-reference",
-      type: "Professional",
-      name: "Client reference",
-      context: "Upwork · Data-science engagements",
-      note: "Professional reference context can speak to communication, analytical thinking, and dependable delivery.",
-      availability: "Available on request",
-    },
-    {
-      id: "leadership-reference",
-      type: "Leadership",
-      name: "Organization reference",
-      context: "DLSU student organizations",
-      note: "Leadership reference context can speak to collaboration, initiative, and follow-through in volunteer teams.",
-      availability: "Available on request",
-    },
-  ] satisfies ReferenceItem[],
   contact: {
     detailLabels: {
       email: "Email",

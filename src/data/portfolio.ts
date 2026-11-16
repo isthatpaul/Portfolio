@@ -79,19 +79,13 @@ export const portfolioData = {
     github: "https://github.com/isthatpaul",
     email: "paulryan0613@gmail.com",
   },
-  navigation: [
-    { label: "About", href: "/about", icon: "users" as IconName },
-    { label: "Academic Works", href: "#academic-works", icon: "file-text" as IconName },
-    { label: "Experience", href: "#experience", icon: "briefcase" as IconName },
-    { label: "Contact", href: "#contact", icon: "mail" as const },
-  ],
   topNavigation: [
     { label: "Work", href: "/", icon: "briefcase" as IconName },
     { label: "Life and all", href: "/life", icon: "route" as IconName },
     { label: "Experience", href: "/#experience", icon: "calendar" as IconName },
     { label: "About", href: "/about", icon: "users" as IconName },
   ],
-  navigationCta: "Get in touch",
+  navigationCta: "Let's talk",
   editorialFooter: {
     eyebrow: "Let's make something useful",
     headline: {
@@ -178,15 +172,6 @@ export const portfolioData = {
       eyebrow: "Where I show up",
       title: "Experience",
       description: "Work, volunteer, and leadership experiences that have shaped how I collaborate, learn, and deliver.",
-    },
-    contact: {
-      eyebrow: "Let's make something useful",
-      title: "Contact",
-      description: "Have a project, opportunity, or question in mind? I'd love to hear from you.",
-      formTitle: "Send a note",
-      formDescription: "The form is ready for a future email endpoint; for now, it confirms your message locally.",
-      submitLabel: "Get in touch",
-      successMessage: "Thanks — your note is ready to send.",
     },
   },
   life: {

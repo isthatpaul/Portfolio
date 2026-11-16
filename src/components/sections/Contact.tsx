@@ -22,6 +22,7 @@ export function Contact() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setCopied(false);
     setSubmitted(true);
     event.currentTarget.reset();
     window.setTimeout(() => setSubmitted(false), 4200);

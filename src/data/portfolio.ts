@@ -44,7 +44,7 @@ export const portfolioData = {
     name: "Paul Martin Ryan Alipio Crisologo",
     shortName: "Paul Crisologo",
     monogram: "PR",
-    role: "CS Undergraduate & Data/Software Dev",
+    role: "CS Undergraduate · Software/Data Dev",
     location: "Manila, Philippines",
     education: "De La Salle University '28",
     degree: "Computer Science · Software Technology",

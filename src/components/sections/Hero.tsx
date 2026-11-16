@@ -7,6 +7,7 @@ import { portfolioData } from "@/data/portfolio";
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const { profile, hero } = portfolioData;
+  const greeting = profile.greeting;
 
   return (
     <section aria-labelledby="hero-title" className="border-b border-line pb-16 pt-6 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-10" id="hero">
@@ -14,11 +15,12 @@ export function Hero() {
         <div>
           <motion.p
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            aria-label={greeting}
             className="script-accent highlight-amber mb-6 inline-block text-[1.65rem] leading-none text-ink sm:text-[2rem]"
             initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            {profile.greeting}
+            {greeting}
           </motion.p>
 
           <motion.h1

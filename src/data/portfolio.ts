@@ -47,6 +47,19 @@ export interface LifeItem {
   icon: IconName;
 }
 
+export type LifeMomentCategory = "Campus" | "Out & About" | "Sports" | "Tech Events";
+export type LifeMomentTapeColor = "pink" | "yellow" | "blue" | null;
+export type LifeMomentRotation = "-rotate-2" | "-rotate-1" | "rotate-1" | "rotate-2";
+
+export interface LifeMoment {
+  id: string;
+  imageUrl: string;
+  caption: string;
+  category: LifeMomentCategory;
+  rotation: LifeMomentRotation;
+  tapeColor?: LifeMomentTapeColor;
+}
+
 export const portfolioData = {
   profile: {
     name: "Paul Martin Ryan Alipio Crisologo",
@@ -180,6 +193,64 @@ export const portfolioData = {
       },
     ] satisfies LifeItem[],
   },
+  lifeMoments: [
+    {
+      id: "poster-showcase",
+      imageUrl: "/assets/life/poster-showcase.jpg",
+      caption: "LRT & MRT Delay App research poster showcase",
+      category: "Campus",
+      rotation: "-rotate-2",
+      tapeColor: "yellow",
+    },
+    {
+      id: "concert-night",
+      imageUrl: "/assets/life/concert-night.jpg",
+      caption: "Arena lights & live music break",
+      category: "Out & About",
+      rotation: "rotate-1",
+      tapeColor: "blue",
+    },
+    {
+      id: "campus-friends",
+      imageUrl: "/assets/life/campus-friends.jpg",
+      caption: "Between classes with friends at DLSU",
+      category: "Campus",
+      rotation: "-rotate-1",
+      tapeColor: "pink",
+    },
+    {
+      id: "pickleball-court",
+      imageUrl: "/assets/life/pickleball-court.jpg",
+      caption: "Weekend rallies on the pickleball court",
+      category: "Sports",
+      rotation: "rotate-2",
+      tapeColor: null,
+    },
+    {
+      id: "retreat-day",
+      imageUrl: "/assets/life/retreat-day.jpg",
+      caption: "Quiet morning architecture & retreat day",
+      category: "Out & About",
+      rotation: "-rotate-2",
+      tapeColor: "yellow",
+    },
+    {
+      id: "shopee-roadshow",
+      imageUrl: "/assets/life/shopee-roadshow.jpg",
+      caption: "Shopee Graduate Development Program campus roadshow",
+      category: "Tech Events",
+      rotation: "rotate-1",
+      tapeColor: "blue",
+    },
+    {
+      id: "campus-fit",
+      imageUrl: "/assets/life/campus-fit.jpg",
+      caption: "Mid-week campus routine",
+      category: "Campus",
+      rotation: "-rotate-1",
+      tapeColor: "pink",
+    },
+  ] satisfies LifeMoment[],
   filters: ["All", "AI & Research", "Software & Systems", "Data Analytics"] as const,
   academicWorks: [
     {

@@ -119,7 +119,7 @@ export const portfolioData = {
     paragraphs: [
       "I’m Paul, a Computer Science undergraduate majoring in Software Technology at De La Salle University, Class of 2028. I’m drawn to the quiet satisfaction of understanding how a system works, then making it a little more useful for someone else.",
       "Technically, I enjoy the bridge between sound software engineering and data science: predictive models, dependable systems, and interfaces that make complex information easier to read and act on.",
-      "A lot of my best learning happens with other people. I help build the DLSU Data Science Society and La Salle Computer Society communities, organize campus tech initiatives, and enjoy the friendly pressure of hackathons and CTF challenges.",
+      "A lot of my best learning happens with other people. I help build the DLSU Data Science Society and La Salle Computer Society communities, organize campus tech initiatives, and enjoy the energy of working alongside curious teammates.",
       "I’m still figuring out the exact shape of the work I want to do. For now, I’m following good questions across code, data, systems, and the people who make each project better.",
     ],
     resumeLabel: "Resume",
@@ -128,18 +128,12 @@ export const portfolioData = {
       ctaLabel: "Explore life and all",
       intro: "When I’m not coding or analyzing datasets, you’ll usually find me:",
       interests: [
-        "Analyzing Formula 1 race telemetry and strategy",
-        "Playing competitive recreational pickleball",
-        "Competing in hackathons and CTFs",
-        "Organizing campus tech workshops",
-        "Exploring good food around Manila",
+        "Listening to music and discovering new playlists",
+        "Hunting down and eating good food around Manila",
+        "Playing competitive recreational pickleball to unplug from the screen",
+        "Hanging out and catching up with friends",
+        "Analyzing Formula 1 race telemetry and weekend strategy",
       ],
-    },
-    signoff: "Code. Analyze. Build. Compete. Unplug. Repeat.",
-    linkLabels: {
-      linkedin: "LinkedIn",
-      github: "GitHub",
-      email: "Email",
     },
   },
   hero: {

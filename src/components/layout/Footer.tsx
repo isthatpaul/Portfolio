@@ -21,7 +21,7 @@ export function Footer() {
 
   return (
     <>
-      <footer className="border-t border-line py-16 sm:py-20 lg:py-24" id="global-footer">
+      <footer className="mt-28 border-t border-[#E6E0D6] bg-[#F3EFEA] py-16 sm:py-20 lg:mt-36 lg:py-24" id="footer">
         <div className="relative">
           <svg aria-hidden="true" className="absolute -left-2 -top-4 h-14 w-14 text-[#F59E0B] sm:-left-4 sm:-top-5" fill="none" viewBox="0 0 56 56">
             <path d="M10 40C16 30 21 23 31 16" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />

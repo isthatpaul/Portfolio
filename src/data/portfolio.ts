@@ -175,7 +175,6 @@ export const portfolioData = {
     galleryHeadline: "Between commits, courts, and campus.",
     gallerySubtitle: "A small scrapbook of the people, places, and detours that keep the work human.",
     galleryNote: "The work is the throughline. The rest is life.",
-    filterLabel: "Filter life moments",
     previewLabel: "Open photo preview",
     closePreviewLabel: "Close photo preview",
     items: [

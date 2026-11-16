@@ -6,10 +6,7 @@ import { ArrowUpRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { portfolioData } from "@/data/portfolio";
-import type { LifeMoment, LifeMomentCategory } from "@/data/portfolio";
-
-const filters = ["All", "Campus", "Out & About", "Sports", "Tech Events"] as const;
-type LifeFilter = (typeof filters)[number];
+import type { LifeMoment } from "@/data/portfolio";
 
 const tapeClasses: Record<Exclude<LifeMoment["tapeColor"], null | undefined>, string> = {
   pink: "bg-[#FBCFE8]",
@@ -17,16 +14,9 @@ const tapeClasses: Record<Exclude<LifeMoment["tapeColor"], null | undefined>, st
   blue: "bg-[#BAE6FD]",
 };
 
-function isMatchingFilter(moment: LifeMoment, filter: LifeFilter) {
-  return filter === "All" || moment.category === (filter as LifeMomentCategory);
-}
-
 export function LifeAndAll() {
   const { life, lifeMoments } = portfolioData;
-  const [activeFilter, setActiveFilter] = useState<LifeFilter>("All");
   const [selectedMoment, setSelectedMoment] = useState<LifeMoment | null>(null);
-
-  const visibleMoments = lifeMoments.filter((moment) => isMatchingFilter(moment, activeFilter));
 
   useEffect(() => {
     if (!selectedMoment) return;
@@ -58,36 +48,9 @@ export function LifeAndAll() {
         <p className="script-accent mt-6 text-2xl text-[#141824]">{life.galleryNote}</p>
       </div>
 
-      <div className="mt-10 flex flex-col gap-4 border-y border-[#EAE6DF] py-4 sm:flex-row sm:items-center sm:justify-between">
-        <div aria-label={life.filterLabel} className="flex flex-wrap gap-2" role="group">
-          {filters.map((filter) => {
-            const isActive = filter === activeFilter;
-
-            return (
-              <button
-                aria-pressed={isActive}
-                className={`min-h-10 rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors duration-200 ${
-                  isActive
-                    ? "border-[#141824] bg-[#141824] text-white"
-                    : "border-[#EAE6DF] bg-white text-[#71717A] hover:border-[#141824]/35 hover:text-[#141824]"
-                }`}
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                type="button"
-              >
-                {filter}
-              </button>
-            );
-          })}
-        </div>
-        <p aria-live="polite" className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#71717A]">
-          {visibleMoments.length} {visibleMoments.length === 1 ? "moment" : "moments"}
-        </p>
-      </div>
-
       <motion.div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3" layout>
         <AnimatePresence mode="popLayout">
-          {visibleMoments.map((moment) => (
+          {lifeMoments.map((moment) => (
             <motion.button
               animate={{ opacity: 1, y: 0 }}
               className={`group relative text-left ${moment.rotation} focus-visible:outline-none`}

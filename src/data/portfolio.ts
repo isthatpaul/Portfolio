@@ -135,12 +135,6 @@ export const portfolioData = {
         "Analyzing Formula 1 race telemetry and weekend strategy",
       ],
     },
-    signoff: "Code. Analyze. Build. Compete. Unplug. Repeat.",
-    linkLabels: {
-      linkedin: "LinkedIn",
-      github: "GitHub",
-      email: "Email",
-    },
   },
   hero: {
     headline: {

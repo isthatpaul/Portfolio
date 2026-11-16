@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { portfolioData, sitePath } from "@/data/portfolio";
 
@@ -83,20 +83,6 @@ export function About() {
             </ul>
           </div>
 
-          <div className="mt-12 border-t border-line pt-8">
-            <p className="font-display text-xl font-extrabold tracking-[-0.05em] text-ink sm:text-2xl">{about.signoff}</p>
-            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-semibold text-ink">
-              <a className="inline-flex items-center gap-2 transition-colors hover:text-[#7C8491]" href={portfolioData.links.linkedin} rel="noreferrer" target="_blank">
-                <Linkedin aria-hidden="true" size={16} /> {about.linkLabels.linkedin}
-              </a>
-              <a className="inline-flex items-center gap-2 transition-colors hover:text-[#7C8491]" href={portfolioData.links.github} rel="noreferrer" target="_blank">
-                <Github aria-hidden="true" size={16} /> {about.linkLabels.github}
-              </a>
-              <a className="inline-flex items-center gap-2 transition-colors hover:text-[#7C8491]" href={`mailto:${portfolioData.links.email}`}>
-                <Mail aria-hidden="true" size={16} /> {about.linkLabels.email}
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

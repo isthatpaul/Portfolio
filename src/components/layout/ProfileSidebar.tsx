@@ -61,16 +61,16 @@ export function ProfileSidebar() {
             </a>
           </div>
 
-          <nav aria-label="Portfolio sections" className="mt-9 w-full border-t border-line pt-6">
-            <ul className="space-y-2">
+          <nav aria-label="Portfolio sections" className="mt-9 w-full border-t border-line px-4 pt-6 text-left">
+            <ul className="flex w-full flex-col items-start gap-2 text-left">
               {portfolioData.topNavigation.map((item) => {
                 const isActive = activeSection === item.href;
 
                 return (
-                  <li key={item.href}>
+                  <li className="w-full" key={item.href}>
                     <a
                       aria-current={isActive ? "page" : undefined}
-                      className={`relative flex min-h-11 items-center justify-center gap-3 rounded-xl px-3 text-sm transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink before:absolute before:left-0 before:top-1/2 before:h-5 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-[#141824]" : "font-semibold text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
+                      className={`relative flex min-h-11 w-full items-center justify-start gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink before:absolute before:left-0 before:top-1/2 before:h-5 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-[#141824]" : "font-semibold text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
                       href={sitePath(item.href)}
                     >
                       <Icon name={item.icon} size={16} />

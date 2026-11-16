@@ -63,7 +63,7 @@ export const portfolioData = {
   resumePath: "/assets/resume/resume.pdf",
   links: {
     linkedin: "https://www.linkedin.com/in/paul-martin-ryan-crisologo",
-    github: "https://github.com/paulryan0613",
+    github: "https://github.com/isthatpaul",
     email: "paulryan0613@gmail.com",
   },
   navigation: [
@@ -79,6 +79,18 @@ export const portfolioData = {
     { label: "About", href: "/about" },
   ],
   navigationCta: "Get in touch",
+  editorialFooter: {
+    eyebrow: "Let's make something useful",
+    headline: {
+      lineOne: "Got a problem",
+      lineTwo: "worth solving?",
+    },
+    emailLabel: "Email",
+    linkedinLabel: "LinkedIn",
+    githubLabel: "GitHub",
+    metadata: "Engineered with curiosity. Built in Manila.",
+    backToTop: "Back to top ↑",
+  },
   hero: {
     headline: {
       lineOne: "Building useful software",
@@ -270,7 +282,6 @@ export const portfolioData = {
       emailPlaceholder: "you@email.com",
       messagePlaceholder: "Tell me about your project, opportunity, or question...",
     },
-    footerNote: "Built with care in Manila · © Paul Martin Ryan Alipio Crisologo",
   },
 } as const;
 

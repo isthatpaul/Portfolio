@@ -93,13 +93,6 @@ export function Contact() {
         </div>
       </section>
 
-      <footer className="border-t border-line py-6">
-        <div className="flex flex-col gap-3 text-xs text-[#7C8491] sm:flex-row sm:items-center sm:justify-between">
-          <p>{contact.footerNote}</p>
-          <a className="inline-flex items-center gap-1 font-semibold text-ink" href="#hero">Back to top <ArrowUpRight aria-hidden="true" size={13} /></a>
-        </div>
-      </footer>
-
       <AnimatePresence>
         {copied || submitted ? (
           <motion.div animate={{ opacity: 1, y: 0 }} aria-live="polite" className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]" exit={{ opacity: 0, y: 8 }} initial={{ opacity: 0, y: 8 }} role="status">

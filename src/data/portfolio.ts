@@ -60,6 +60,10 @@ export const portfolioData = {
     bio: "I'm a Computer Science undergraduate at De La Salle University, majoring in Software Technology. I build practical, thoughtful software and enjoy working at the intersection of data, systems, and machine learning.",
     extendedBio: "I like turning complex questions into clear, usable tools — from predictive models and explainable analytics to dependable software systems. My work is grounded in curiosity, careful reasoning, and a desire to make technical ideas useful to real people.",
   },
+  personal: {
+    avatarUrl: "/assets/profile/avatar.jpg",
+    aboutPhotoUrl: "/assets/profile/about.jpg",
+  },
   resumePath: "/assets/resume/resume.pdf",
   links: {
     linkedin: "https://www.linkedin.com/in/paul-martin-ryan-crisologo",

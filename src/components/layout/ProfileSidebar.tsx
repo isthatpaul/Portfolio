@@ -92,16 +92,16 @@ export function ProfileSidebar() {
             </a>
           </div>
 
-          <nav aria-label="Portfolio sections" className="mt-9 w-full border-t border-line pt-6">
-            <ul className="space-y-2">
+          <nav aria-label="Portfolio sections" className="mt-9 w-full border-t border-line px-4 pt-6 text-left">
+            <ul className="flex w-full flex-col items-start gap-2 text-left">
               {portfolioData.topNavigation.map((item) => {
                 const isActive = activeSection === item.href;
 
                 return (
-                  <li key={item.href}>
+                  <li className="w-full" key={item.href}>
                     <a
                       aria-current={isActive ? "page" : undefined}
-                      className={`flex min-h-11 items-center justify-center gap-3 rounded-xl px-3 text-sm font-semibold transition-colors duration-200 ${isActive ? "bg-accent text-ink" : "text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
+                      className={`flex min-h-11 w-full items-center justify-start gap-3 rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors duration-200 ${isActive ? "bg-accent text-ink" : "text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
                       href={sitePath(item.href)}
                     >
                       <Icon name={item.icon} size={16} />

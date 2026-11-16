@@ -65,7 +65,7 @@ export const portfolioData = {
     name: "Paul Martin Ryan Alipio Crisologo",
     shortName: "Paul Crisologo",
     monogram: "PR",
-    role: "CS Undergraduate · Software/Data Dev",
+    role: "CS Undergraduate",
     location: "Manila, Philippines",
     education: "De La Salle University '28",
     degree: "Computer Science · Software Technology",
@@ -86,10 +86,10 @@ export const portfolioData = {
     { label: "Contact", href: "#contact", icon: "mail" as const },
   ],
   topNavigation: [
-    { label: "Work", href: "/" },
-    { label: "Life and all", href: "/life" },
-    { label: "Experience", href: "/#experience" },
-    { label: "About", href: "/about" },
+    { label: "Work", href: "/", icon: "briefcase" as IconName },
+    { label: "Life and all", href: "/life", icon: "route" as IconName },
+    { label: "Experience", href: "/#experience", icon: "calendar" as IconName },
+    { label: "About", href: "/about", icon: "users" as IconName },
   ],
   navigationCta: "Get in touch",
   editorialFooter: {

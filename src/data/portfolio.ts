@@ -166,11 +166,6 @@ export const portfolioData = {
     illustrationLabel: "Line-art illustration of a laptop, books, and a simple systems diagram",
   },
   sectionCopy: {
-    about: {
-      eyebrow: "A little context",
-      title: "About",
-      description: "A Computer Science undergraduate who enjoys turning ideas into usable software, and learning through the process of building.",
-    },
     academicWorks: {
       eyebrow: "Selected work",
       title: "Academic Works",
@@ -194,12 +189,6 @@ export const portfolioData = {
       successMessage: "Thanks — your note is ready to send.",
     },
   },
-  aboutDetails: [
-    { label: "Degree", value: "Computer Science · Software Technology" },
-    { label: "University", value: "De La Salle University" },
-    { label: "Class", value: "2028" },
-    { label: "Based", value: "Manila, Philippines" },
-  ],
   life: {
     eyebrow: "Outside the build",
     title: "Life and all",
@@ -237,18 +226,6 @@ export const portfolioData = {
     ] satisfies LifeItem[],
   },
   filters: ["All", "AI & Research", "Software & Systems", "Data Analytics"] as const,
-  skills: {
-    languages: ["Python", "Java", "JavaScript", "TypeScript", "SQL", "C"],
-    frameworks: ["React", "Next.js", "Node.js", "Express", "Pandas", "scikit-learn"],
-    dataAndMl: ["Data Analysis", "Machine Learning", "SHAP", "Clustering", "Feature Engineering", "Visualization"],
-    tools: ["Git", "GitHub", "Jupyter", "Postman", "Figma", "LaTeX"],
-  },
-  skillGroups: [
-    { label: "Languages", items: ["Python", "Java", "JavaScript", "TypeScript", "SQL", "C"] },
-    { label: "Frameworks", items: ["React", "Next.js", "Node.js", "Express", "Pandas", "scikit-learn"] },
-    { label: "Data & ML", items: ["Data Analysis", "Machine Learning", "SHAP", "Clustering", "Feature Engineering", "Visualization"] },
-    { label: "Developer Tools", items: ["Git", "GitHub", "Jupyter", "Postman", "Figma", "LaTeX"] },
-  ],
   academicWorks: [
     {
       id: "f1-predictive-model",

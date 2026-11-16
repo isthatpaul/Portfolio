@@ -6,7 +6,7 @@ import { portfolioData } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
 
 export function ProfileSidebar() {
-  const [activeSection, setActiveSection] = useState(portfolioData.navigation[0].href);
+  const [activeSection, setActiveSection] = useState<string>(portfolioData.navigation[0].href);
 
   useEffect(() => {
     const sections = portfolioData.navigation

@@ -229,7 +229,7 @@ export const portfolioData = {
     {
       id: "campus-friends",
       imageUrl: assetPath("/assets/life/campus-friends.jpg"),
-      caption: "Between classes with friends at DLSU",
+      caption: "Between classes with friends",
       category: "Campus",
       rotation: "-rotate-1",
       tapeColor: "pink",

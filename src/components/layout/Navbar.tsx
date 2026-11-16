@@ -2,7 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData, sitePath } from "@/data/portfolio";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -19,7 +19,7 @@ export function Navbar() {
             <a
               aria-current={isActive ? "page" : undefined}
               className={`whitespace-nowrap rounded-full px-4 py-2 text-xs font-bold transition-colors duration-200 ${isActive ? "bg-[#F5F1EB] text-ink" : "text-muted hover:bg-[#F5F1EB] hover:text-ink"}`}
-              href={item.href}
+              href={sitePath(item.href)}
               key={item.href}
             >
               {item.label}

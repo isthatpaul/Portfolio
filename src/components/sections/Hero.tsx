@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData, sitePath } from "@/data/portfolio";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -49,7 +49,7 @@ export function Hero() {
             initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
             transition={{ delay: 0.24, duration: 0.5, ease: "easeOut" }}
           >
-            <a className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5" href="#academic-works">
+            <a className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5" href={sitePath("/#academic-works")}>
               {hero.primaryAction} <ArrowRight aria-hidden="true" size={16} />
             </a>
             <a className="inline-flex min-h-12 items-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-bold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]" href={portfolioData.resumePath} target="_blank" rel="noreferrer">

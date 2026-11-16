@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, FileText, Linkedin, MapPin, GraduationCap } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData, sitePath } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
 
 export function ProfileSidebar() {
@@ -102,7 +102,7 @@ export function ProfileSidebar() {
                     <a
                       aria-current={isActive ? "page" : undefined}
                       className={`flex min-h-11 items-center justify-center gap-3 rounded-xl px-3 text-sm font-semibold transition-colors duration-200 ${isActive ? "bg-accent text-ink" : "text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
-                      href={item.href}
+                      href={sitePath(item.href)}
                     >
                       <Icon name={item.icon} size={16} />
                       <span>{item.label}</span>
@@ -118,7 +118,7 @@ export function ProfileSidebar() {
 
       <div className="sticky top-0 z-40 border-b border-line bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
         <div className="flex items-center justify-between gap-3">
-          <a href="/" className="flex min-h-11 items-center gap-3">
+          <a href={sitePath("/")} className="flex min-h-11 items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-bold tracking-[-0.08em] text-white">{portfolioData.profile.monogram}</span>
             <span className="font-display text-sm font-bold tracking-[-0.04em] text-ink">{portfolioData.profile.shortName}</span>
           </a>
@@ -131,7 +131,7 @@ export function ProfileSidebar() {
             const isActive = activeSection === item.href;
 
             return (
-              <a className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs font-semibold ${isActive ? "bg-accent text-ink" : "text-muted"}`} href={item.href} key={item.href}>
+              <a className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs font-semibold ${isActive ? "bg-accent text-ink" : "text-muted"}`} href={sitePath(item.href)} key={item.href}>
                 {item.label}
               </a>
             );

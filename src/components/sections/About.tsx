@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { useState } from "react";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData, sitePath } from "@/data/portfolio";
 
 export function About() {
   const { about, personal } = portfolioData;
@@ -68,7 +68,7 @@ export function About() {
           <div className="mt-12 border-t border-line pt-10">
             <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
               <h2 className="mb-4 font-display text-2xl font-bold tracking-tight text-[#141824] sm:text-3xl">{about.beyondScreen.title}</h2>
-              <a className="inline-flex items-center gap-2 rounded-full bg-[#FBCFE8] px-5 py-2 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5" href="/life">
+          <a className="inline-flex items-center gap-2 rounded-full bg-[#FBCFE8] px-5 py-2 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5" href={sitePath("/life")}>
                 {about.beyondScreen.ctaLabel}
                 <ArrowUpRight aria-hidden="true" size={16} />
               </a>

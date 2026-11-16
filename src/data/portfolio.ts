@@ -60,6 +60,16 @@ export interface LifeMoment {
   tapeColor?: LifeMomentTapeColor;
 }
 
+const staticBasePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+
+export function sitePath(path: string) {
+  return `${staticBasePath}${path}`;
+}
+
+function assetPath(path: string) {
+  return sitePath(path);
+}
+
 export const portfolioData = {
   profile: {
     name: "Paul Martin Ryan Alipio Crisologo",
@@ -74,10 +84,10 @@ export const portfolioData = {
     extendedBio: "I like turning complex questions into clear, usable tools — from predictive models and explainable analytics to dependable software systems. My work is grounded in curiosity, careful reasoning, and a desire to make technical ideas useful to real people.",
   },
   personal: {
-    avatarUrl: "/assets/profile/avatar.jpg",
-    aboutPhotoUrl: "/assets/profile/about.jpg",
+    avatarUrl: assetPath("/assets/profile/avatar.jpg"),
+    aboutPhotoUrl: assetPath("/assets/profile/about.jpg"),
   },
-  resumePath: "/assets/resume/resume.pdf",
+  resumePath: assetPath("/assets/resume/resume.pdf"),
   links: {
     linkedin: "https://www.linkedin.com/in/paul-martin-ryan-crisologo",
     github: "https://github.com/isthatpaul",
@@ -202,7 +212,7 @@ export const portfolioData = {
   lifeMoments: [
     {
       id: "poster-showcase",
-      imageUrl: "/assets/life/poster-showcase.jpg",
+      imageUrl: assetPath("/assets/life/poster-showcase.jpg"),
       caption: "LRT & MRT Delay App research poster showcase",
       category: "Campus",
       rotation: "-rotate-2",
@@ -210,7 +220,7 @@ export const portfolioData = {
     },
     {
       id: "concert-night",
-      imageUrl: "/assets/life/concert-night.jpg",
+      imageUrl: assetPath("/assets/life/concert-night.jpg"),
       caption: "Arena lights & live music break",
       category: "Out & About",
       rotation: "rotate-1",
@@ -218,7 +228,7 @@ export const portfolioData = {
     },
     {
       id: "campus-friends",
-      imageUrl: "/assets/life/campus-friends.jpg",
+      imageUrl: assetPath("/assets/life/campus-friends.jpg"),
       caption: "Between classes with friends at DLSU",
       category: "Campus",
       rotation: "-rotate-1",
@@ -226,7 +236,7 @@ export const portfolioData = {
     },
     {
       id: "pickleball-court",
-      imageUrl: "/assets/life/pickleball-court.jpg",
+      imageUrl: assetPath("/assets/life/pickleball-court.jpg"),
       caption: "Weekend rallies on the pickleball court",
       category: "Sports",
       rotation: "rotate-2",
@@ -234,7 +244,7 @@ export const portfolioData = {
     },
     {
       id: "retreat-day",
-      imageUrl: "/assets/life/retreat-day.jpg",
+      imageUrl: assetPath("/assets/life/retreat-day.jpg"),
       caption: "Quiet morning architecture & retreat day",
       category: "Out & About",
       rotation: "-rotate-2",
@@ -242,7 +252,7 @@ export const portfolioData = {
     },
     {
       id: "shopee-roadshow",
-      imageUrl: "/assets/life/shopee-roadshow.jpg",
+      imageUrl: assetPath("/assets/life/shopee-roadshow.jpg"),
       caption: "Shopee Graduate Development Program campus roadshow",
       category: "Tech Events",
       rotation: "rotate-1",
@@ -250,7 +260,7 @@ export const portfolioData = {
     },
     {
       id: "campus-fit",
-      imageUrl: "/assets/life/campus-fit.jpg",
+      imageUrl: assetPath("/assets/life/campus-fit.jpg"),
       caption: "Mid-week campus routine",
       category: "Campus",
       rotation: "-rotate-1",

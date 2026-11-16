@@ -47,6 +47,19 @@ export interface LifeItem {
   icon: IconName;
 }
 
+export interface AboutToolkitGroup {
+  label: string;
+  items: string[];
+}
+
+export interface AboutSnapshot {
+  id: string;
+  title: string;
+  summary: string;
+  tags: string[];
+  icon: IconName;
+}
+
 export const portfolioData = {
   profile: {
     name: "Paul Martin Ryan Alipio Crisologo",
@@ -90,6 +103,57 @@ export const portfolioData = {
     githubLabel: "GitHub",
     metadata: "Engineered with curiosity. Built in Manila.",
     backToTop: "Back to top ↑",
+  },
+  about: {
+    eyebrow: "Beyond the terminal",
+    headline: {
+      lineOne: "A little more about how I think, build,",
+      lineTwo: "and spend my time.",
+    },
+    paragraphs: [
+      "I’m a Computer Science undergraduate majoring in Software Technology at De La Salle University, Class of 2028. I started with a curiosity about how things work and keep coming back to the same question: how can a technical idea become something useful to another person?",
+      "The part of computing that excites me most is the bridge between solid software engineering fundamentals and data science — predictive models, well-shaped systems, and interfaces that make complex information easier to understand.",
+      "I also like the work that happens between the commits: organizing tech events, contributing to the DLSU Data Science Society and La Salle Computer Society, and competing in hackathons and CTF challenges with people who enjoy learning in public.",
+    ],
+    details: [
+      { label: "Studying", value: "Computer Science · Software Technology" },
+      { label: "University", value: "De La Salle University" },
+      { label: "Class", value: "2028" },
+      { label: "Based", value: "Manila, Philippines" },
+    ],
+    toolkitLabel: "The working toolkit",
+    toolkitTitle: "Tools I reach for",
+    toolkit: [
+      { label: "Languages", items: ["Python", "Java", "C", "JavaScript/TypeScript", "Go", "SQL"] },
+      { label: "Web & Systems", items: ["React", "Next.js", "Tailwind CSS", "Node.js", "Playwright"] },
+      { label: "Data & Machine Learning", items: ["pandas", "NumPy", "scikit-learn", "FastF1 API", "K-Means"] },
+      { label: "Databases & Dev Tools", items: ["PostgreSQL/SQL", "MongoDB", "Git/GitLab", "Linux/VS Code"] },
+    ] satisfies AboutToolkitGroup[],
+    snapshotsLabel: "Outside of code",
+    snapshotsTitle: "A few things that keep the work human",
+    snapshots: [
+      {
+        id: "motorsport-telemetry",
+        title: "Motorsport Telemetry",
+        summary: "Analyzing Formula 1 race strategy, lap times, and driver performance data.",
+        tags: ["Formula 1", "FastF1 API"],
+        icon: "chart",
+      },
+      {
+        id: "on-the-court",
+        title: "On the Court",
+        summary: "Playing competitive recreational pickleball to unplug from the screen.",
+        tags: ["Pickleball", "Reset"],
+        icon: "route",
+      },
+      {
+        id: "campus-community",
+        title: "Campus & Community",
+        summary: "Building workshops and student tech initiatives at DLSU.",
+        tags: ["DLSU", "Workshops"],
+        icon: "users",
+      },
+    ] satisfies AboutSnapshot[],
   },
   hero: {
     headline: {

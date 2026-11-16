@@ -2,14 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight, FileText, Linkedin, MapPin, GraduationCap } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { portfolioData } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
 
 export function ProfileSidebar() {
-  const [activeSection, setActiveSection] = useState<string>(portfolioData.navigation[0].href);
+  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState<string>(pathname === "/about" ? "/about" : "#academic-works");
+
+  const navigationHref = (href: string) => href.startsWith("#") && pathname !== "/" ? `/${href}` : href;
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(pathname);
+      return;
+    }
+
     const sections = portfolioData.navigation
+      .filter((item) => item.href.startsWith("#"))
       .map((item) => document.querySelector(item.href))
       .filter((section): section is Element => Boolean(section));
 
@@ -30,7 +40,7 @@ export function ProfileSidebar() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
     <>
@@ -82,14 +92,14 @@ export function ProfileSidebar() {
           <nav aria-label="Portfolio sections" className="mt-9 border-t border-line pt-5">
             <ul className="space-y-1">
               {portfolioData.navigation.map((item) => {
-                const isActive = activeSection === item.href;
+                const isActive = activeSection === item.href || (item.href === "/about" && pathname === "/about");
 
                 return (
                   <li key={item.href}>
                     <a
                       aria-current={isActive ? "page" : undefined}
                       className={`flex min-h-11 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition-colors duration-200 ${isActive ? "bg-accent text-ink" : "text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
-                      href={item.href}
+                      href={navigationHref(item.href)}
                     >
                       <Icon name={item.icon} size={16} />
                       <span>{item.label}</span>
@@ -106,7 +116,7 @@ export function ProfileSidebar() {
 
       <div className="sticky top-0 z-40 border-b border-line bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
         <div className="flex items-center justify-between gap-3">
-          <a href="#about" className="flex min-h-11 items-center gap-3">
+          <a href="/" className="flex min-h-11 items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-bold tracking-[-0.08em] text-white">{portfolioData.profile.monogram}</span>
             <span className="font-display text-sm font-bold tracking-[-0.04em] text-ink">{portfolioData.profile.shortName}</span>
           </a>
@@ -116,10 +126,10 @@ export function ProfileSidebar() {
         </div>
         <nav aria-label="Mobile portfolio sections" className="mt-3 -mx-1 flex gap-1 overflow-x-auto pb-1">
           {portfolioData.navigation.map((item) => {
-            const isActive = activeSection === item.href;
+            const isActive = activeSection === item.href || (item.href === "/about" && pathname === "/about");
 
             return (
-              <a className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs font-semibold ${isActive ? "bg-accent text-ink" : "text-muted"}`} href={item.href} key={item.href}>
+              <a className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs font-semibold ${isActive ? "bg-accent text-ink" : "text-muted"}`} href={navigationHref(item.href)} key={item.href}>
                 {item.label}
               </a>
             );

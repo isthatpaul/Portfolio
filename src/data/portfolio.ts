@@ -59,16 +59,18 @@ export const portfolioData = {
     email: "paulryan0613@gmail.com",
   },
   navigation: [
-    { label: "About", href: "#about", icon: "users" as IconName },
+    { label: "About", href: "/about", icon: "users" as IconName },
     { label: "Academic Works", href: "#academic-works", icon: "file-text" as IconName },
     { label: "Experience", href: "#experience", icon: "briefcase" as IconName },
     { label: "Contact", href: "#contact", icon: "mail" as const },
   ],
   topNavigation: [
-    { label: "Work", href: "#academic-works" },
-    { label: "Experience", href: "#experience" },
-    { label: "About", href: "#about" },
+    { label: "Work", href: "/" },
+    { label: "Life and all", href: "/life" },
+    { label: "Experience", href: "/#experience" },
+    { label: "About", href: "/about" },
   ],
+  navigationCta: "Get in touch",
   hero: {
     headline: {
       lineOne: "Building useful software",

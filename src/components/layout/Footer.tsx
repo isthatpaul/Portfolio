@@ -36,7 +36,7 @@ export function Footer() {
           </h2>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <button className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDBA74] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5" onClick={handleCopyEmail} type="button">
+            <button aria-label={copied ? "Email copied to clipboard" : `Copy ${links.email} email address`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDBA74] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5" onClick={handleCopyEmail} type="button">
               {copied ? <Check aria-hidden="true" size={16} /> : <Copy aria-hidden="true" size={16} />}
               {copied ? "Email copied" : editorialFooter.emailLabel}
             </button>
@@ -61,7 +61,7 @@ export function Footer() {
 
       <AnimatePresence>
         {copied ? (
-          <motion.div animate={{ opacity: 1, y: 0 }} aria-live="polite" className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]" exit={{ opacity: 0, y: 8 }} initial={{ opacity: 0, y: 8 }} role="status">
+          <motion.div animate={{ opacity: 1, y: 0 }} aria-atomic="true" aria-label="Email copied to clipboard" aria-live="polite" className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]" exit={{ opacity: 0, y: 8 }} initial={{ opacity: 0, y: 8 }} role="status">
             <Check aria-hidden="true" size={15} /> Email copied to clipboard
           </motion.div>
         ) : null}

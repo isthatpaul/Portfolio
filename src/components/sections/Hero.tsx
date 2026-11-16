@@ -10,7 +10,7 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-title" className="border-b border-line pb-16 pt-6 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-10" id="hero">
-      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(300px,.95fr)] lg:gap-10">
+      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(270px,.8fr)] lg:gap-8">
         <div>
           <motion.p
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -23,7 +23,7 @@ export function Hero() {
 
           <motion.h1
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            className="max-w-[720px] font-display text-[clamp(2.65rem,6vw,5.6rem)] font-extrabold leading-[.98] tracking-[-0.075em] text-ink"
+            className="max-w-[720px] font-display text-[clamp(2.65rem,6vw,5.6rem)] font-extrabold leading-[.98] tracking-[-0.075em] text-ink lg:text-[clamp(3.25rem,3.6vw,4rem)]"
             id="hero-title"
             initial={reduceMotion ? undefined : { opacity: 0, y: 18 }}
             transition={{ delay: 0.08, duration: 0.55, ease: "easeOut" }}

@@ -28,18 +28,18 @@ export function Experience() {
               <span aria-hidden="true" className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full border-2 border-white bg-ink ring-1 ring-ink/10" />
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#7C8491]">{item.organization}</p>
+                  <p className="font-mono text-xs font-medium uppercase tracking-[0.1em] text-muted-strong">{item.organization}</p>
                   <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{item.role}</h3>
                   <p className="mt-1 text-xs font-semibold text-muted">{item.location}</p>
                 </div>
                 {(item.date || item.current) ? (
                   <div className="flex flex-wrap items-center gap-2.5">
                     {item.date ? (
-                      <span className="font-mono text-[11px] font-medium uppercase leading-5 tracking-[0.08em] text-[#7C8491]">{item.date}</span>
+                      <span className="font-mono text-xs font-medium uppercase leading-5 tracking-[0.08em] text-muted-strong">{item.date}</span>
                     ) : null}
                     {item.current ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E0F2FE] px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-ink">
-                        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#2B8FC4]" />
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-accent px-3 py-1 font-mono text-xs font-medium uppercase tracking-[0.08em] text-ink">
+                        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent-dot" />
                         Current
                       </span>
                     ) : null}
@@ -50,11 +50,11 @@ export function Experience() {
               <p className="mt-5 max-w-[650px] text-sm leading-6 text-muted">{item.summary}</p>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-muted">
                 {item.impact.map((point) => (
-                  <li className="flex gap-3" key={point}><span aria-hidden="true" className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#8CCEF1]" />{point}</li>
+                  <li className="flex gap-3" key={point}><span aria-hidden="true" className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent-dot" />{point}</li>
                 ))}
               </ul>
               <ul aria-label={`${item.role} skill tags`} className="mt-6 flex flex-wrap gap-2">
-                {item.tags.map((tag) => <li className="rounded-full bg-white px-3 py-1.5 font-mono text-[10px] text-[#7C8491]" key={tag}>{tag}</li>)}
+                {item.tags.map((tag) => <li className="rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted-strong" key={tag}>{tag}</li>)}
               </ul>
             </div>
           </motion.article>

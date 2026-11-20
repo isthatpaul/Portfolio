@@ -41,7 +41,7 @@ textarea {
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.24);
+  background: var(--color-accent);
   color: var(--color-foreground);
 }
 
@@ -64,10 +64,10 @@ select:focus-visible {
 }
 
 .eyebrow {
-  color: var(--color-muted-foreground-strong);
+  color: var(--color-muted-strong);
   font-family: var(--font-mono);
-  font-size: 0.69rem;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
   line-height: 1.4;
   text-transform: uppercase;
 }

@@ -101,14 +101,14 @@ export function AcademicWork() {
             transition={{ delay: reduceMotion ? 0 : index * 0.035, duration: 0.32, ease: "easeOut" }}
           >
             <div className="flex items-start justify-between gap-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#F5F1EB] text-ink">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-elevated text-ink">
                 <Icon name={work.icon} size={21} />
               </div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7C8491]">0{index + 1}</span>
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-strong">0{index + 1}</span>
             </div>
 
             <div className="mt-7">
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#7C8491]">{work.category}</p>
+              <p className="font-mono text-xs font-medium uppercase tracking-[0.1em] text-muted-strong">{work.category}</p>
               <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{work.title}</h3>
               <p className="mt-1 text-xs font-semibold text-muted">{work.context}</p>
               <p className="mt-4 max-w-[470px] text-sm leading-6 text-muted">{work.summary}</p>
@@ -119,7 +119,7 @@ export function AcademicWork() {
 
             <div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-7">
               <ul aria-label={`${work.title} technology tags`} className="flex max-w-[70%] flex-wrap gap-2">
-                {work.tags.map((tag) => <li className="rounded-full bg-[#F8F5F0] px-2.5 py-1 font-mono text-[10px] text-[#7C8491]" key={tag}>{tag}</li>)}
+                {work.tags.map((tag) => <li className="rounded-full border border-line/80 bg-chip px-3 py-1 font-mono text-xs text-muted-strong" key={tag}>{tag}</li>)}
               </ul>
               <button
                 aria-label={`${work.title} — ${sectionCopy.academicWorks.inspectAction}`}
@@ -174,15 +174,15 @@ export function AcademicWork() {
 
               <div className="mt-8 grid gap-6 border-t border-line pt-6 sm:grid-cols-2">
                 <div>
-                  <h4 className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7C8491]">Focus</h4>
+                  <h4 className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-muted-strong">Focus</h4>
                   <ul className="mt-3 space-y-2 text-sm font-semibold text-ink">
-                    {selectedWork.outcomes.map((outcome) => <li className="flex gap-2" key={outcome}><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#8CCEF1]" />{outcome}</li>)}
+                    {selectedWork.outcomes.map((outcome) => <li className="flex gap-2" key={outcome}><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-dot" />{outcome}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7C8491]">Stack</h4>
+                  <h4 className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-muted-strong">Stack</h4>
                   <ul className="mt-3 flex flex-wrap gap-2">
-                    {selectedWork.tags.map((tag) => <li className="rounded-full bg-[#F8F5F0] px-3 py-1.5 font-mono text-[10px] text-muted" key={tag}>{tag}</li>)}
+                    {selectedWork.tags.map((tag) => <li className="rounded-full border border-line/80 bg-chip px-3 py-1 font-mono text-xs text-muted-strong" key={tag}>{tag}</li>)}
                   </ul>
                 </div>
               </div>

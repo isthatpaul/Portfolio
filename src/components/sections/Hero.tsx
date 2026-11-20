@@ -116,7 +116,7 @@ export function Hero() {
             </a>
           </motion.div>
 
-          <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.14em] text-[#7C8491]">{profile.degree}</p>
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.12em] text-muted-strong">{profile.degree}</p>
         </div>
 
         <motion.div
@@ -151,7 +151,7 @@ export function Hero() {
               <path d="M51 74C63 62 75 55 90 51M422 83C436 76 450 74 464 75" stroke="#141824" strokeDasharray="3 8" strokeLinecap="round" strokeWidth="2" opacity=".55" />
             </svg>
           </div>
-          <p className="mt-3 text-right font-mono text-[10px] uppercase tracking-[0.12em] text-[#7C8491]">data / systems / software</p>
+          <p className="mt-3 text-right font-mono text-xs uppercase tracking-[0.12em] text-muted-strong">data / systems / software</p>
         </motion.div>
       </div>
     </section>

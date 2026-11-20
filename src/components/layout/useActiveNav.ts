@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 
 const staticBasePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
 const EXPERIENCE_HASH = "#experience";
-const HOME_SECTION_IDS = ["hero", "academic-works", "experience"] as const;
+const FOOTER_HASH = "#footer";
+const HOME_SECTION_IDS = ["hero", "academic-works", "experience", "footer"] as const;
 
 /** Strip the configured basePath and any trailing slash so routes compare cleanly. */
 export function normalizePathname(pathname: string | null) {
@@ -29,7 +30,7 @@ export function normalizePathname(pathname: string | null) {
 export function useActiveNav() {
   const path = normalizePathname(usePathname());
   const isHome = path === "/";
-  const [homeActiveHref, setHomeActiveHref] = useState<string>("/");
+  const [homeActiveHref, setHomeActiveHref] = useState<string | null>("/");
 
   useEffect(() => {
     if (!isHome) {
@@ -44,17 +45,19 @@ export function useActiveNav() {
       }
 
       const experienceEl = document.getElementById("experience");
+      const footerEl = document.getElementById("footer");
       if (!experienceEl) {
         setHomeActiveHref("/");
         return;
       }
 
       const threshold = Math.min(window.innerHeight * 0.4, 340);
-      const experienceTop = experienceEl.getBoundingClientRect().top;
-      const reachedBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 48;
+      const experienceRect = experienceEl.getBoundingClientRect();
+      const footerRect = footerEl?.getBoundingClientRect();
 
-      if (experienceTop <= threshold || reachedBottom) {
+      if (footerRect && footerRect.top <= window.innerHeight * 0.55 && experienceRect.bottom <= threshold) {
+        setHomeActiveHref(null);
+      } else if (experienceRect.top <= threshold) {
         setHomeActiveHref("/#experience");
       } else {
         setHomeActiveHref("/");
@@ -62,7 +65,9 @@ export function useActiveNav() {
     };
 
     const syncHash = () => {
-      if (window.location.hash === EXPERIENCE_HASH) {
+      if (window.location.hash === FOOTER_HASH) {
+        setHomeActiveHref(null);
+      } else if (window.location.hash === EXPERIENCE_HASH) {
         setHomeActiveHref("/#experience");
       } else if (window.location.hash === "" || window.location.hash === "#hero" || window.location.hash === "#academic-works") {
         setHomeActiveHref("/");

@@ -12,7 +12,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 8.5rem;
   background: var(--color-background);
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 1.5rem;
+  }
 }
 
 body {

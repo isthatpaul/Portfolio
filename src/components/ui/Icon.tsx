@@ -4,6 +4,7 @@ import {
   BrainCircuit,
   BriefcaseBusiness,
   CalendarDays,
+  Camera,
   Database,
   FileText,
   GraduationCap,
@@ -15,6 +16,7 @@ import type { IconName } from "@/data/portfolio";
 
 const icons: Record<IconName, LucideIcon> = {
   brain: BrainCircuit,
+  camera: Camera,
   chart: BarChart3,
   "file-text": FileText,
   database: Database,

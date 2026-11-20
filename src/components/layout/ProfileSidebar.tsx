@@ -1,15 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
+import { usePathname } from "next/navigation";
 import { ArrowDown, ArrowUpRight, FileText, Github, GraduationCap, Linkedin, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { portfolioData, sitePath } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
-import { useActiveNav } from "@/components/layout/useActiveNav";
+import { normalizePathname, useActiveNav } from "@/components/layout/useActiveNav";
 
 export function ProfileSidebar() {
+  const pathname = normalizePathname(usePathname());
   const activeSection = useActiveNav();
   const [avatarFailed, setAvatarFailed] = useState(false);
+
+  const handleHomeNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === "/" && pathname === "/") {
+      event.preventDefault();
+      if (window.location.hash) {
+        window.history.replaceState(null, "", sitePath("/") || "/");
+      }
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
+    }
+  };
 
   return (
     <>
@@ -44,6 +57,7 @@ export function ProfileSidebar() {
             <a
               className="block font-display text-[1.35rem] font-extrabold leading-[1.12] tracking-[-0.03em] text-ink transition-opacity hover:opacity-85"
               href={sitePath("/")}
+              onClick={(event) => handleHomeNavClick(event, "/")}
             >
               {portfolioData.profile.name}
             </a>
@@ -101,9 +115,10 @@ export function ProfileSidebar() {
                 return (
                   <li className="w-full" key={item.href}>
                     <a
-                      aria-current={isActive ? "page" : undefined}
+                      aria-current={isActive ? (item.href.includes("#") ? "location" : "page") : undefined}
                       className={`flex min-h-11 w-full items-center justify-start gap-3 rounded-xl border px-3.5 py-2 text-left text-sm transition-colors duration-200 ${isActive ? "border-ink/15 bg-accent font-bold text-ink" : "border-transparent font-semibold text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
                       href={sitePath(item.href)}
+                      onClick={(event) => handleHomeNavClick(event, item.href)}
                     >
                       <Icon name={item.icon} size={16} />
                       <span>{item.label}</span>
@@ -117,9 +132,9 @@ export function ProfileSidebar() {
 
       </aside>
 
-      <div className="sticky top-0 z-40 border-b border-line bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <div className="sticky top-0 z-40 border-b border-line bg-white/95 px-4 py-2.5 backdrop-blur lg:hidden">
         <div className="flex items-center justify-between gap-3">
-          <a href={sitePath("/")} className="flex min-h-11 items-center gap-3">
+          <a href={sitePath("/")} className="flex min-h-11 items-center gap-3" onClick={(event) => handleHomeNavClick(event, "/")}>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-bold tracking-[-0.02em] text-white">{portfolioData.profile.monogram}</span>
             <span className="font-display text-sm font-bold tracking-[-0.025em] text-ink">{portfolioData.profile.shortName}</span>
           </a>
@@ -127,16 +142,17 @@ export function ProfileSidebar() {
             Resume <ArrowUpRight aria-hidden="true" size={14} />
           </a>
         </div>
-        <nav aria-label="Mobile portfolio sections" className="mt-3 -mx-1 flex gap-1.5 overflow-x-auto pb-1">
+        <nav aria-label="Mobile portfolio sections" className="mt-2 -mx-1 flex gap-1.5 overflow-x-auto pb-0.5">
           {portfolioData.topNavigation.map((item) => {
             const isActive = activeSection === item.href;
 
             return (
               <a
-                aria-current={isActive ? "page" : undefined}
+                aria-current={isActive ? (item.href.includes("#") ? "location" : "page") : undefined}
                 className={`flex min-h-11 shrink-0 items-center rounded-full px-3.5 text-xs transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink" : "font-semibold text-muted"}`}
                 href={sitePath(item.href)}
                 key={item.href}
+                onClick={(event) => handleHomeNavClick(event, item.href)}
               >
                 {item.label}
               </a>

@@ -2,18 +2,33 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 
 export function Footer() {
   const { editorialFooter, links } = portfolioData;
   const [copied, setCopied] = useState(false);
+  const copyTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(links.email);
       setCopied(true);
-      window.setTimeout(() => setCopied(false), 2600);
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+      copyTimerRef.current = window.setTimeout(() => {
+        setCopied(false);
+        copyTimerRef.current = null;
+      }, 2600);
     } catch {
       window.location.href = `mailto:${links.email}`;
     }
@@ -71,14 +86,23 @@ export function Footer() {
 
           <div className="mt-14 flex flex-col gap-3 border-t border-[#E6E0D6] pt-6 text-xs text-[#7C8491] sm:flex-row sm:items-center sm:justify-between">
             <p>{editorialFooter.metadata}</p>
-            <a className="inline-flex items-center gap-1 font-semibold text-ink" href="#top">{editorialFooter.backToTop}</a>
+            <a className="inline-flex min-h-11 items-center gap-1 rounded-full px-3 -mx-3 font-semibold text-ink transition-colors hover:bg-black/5" href="#top">{editorialFooter.backToTop}</a>
           </div>
         </div>
       </footer>
 
       <AnimatePresence>
         {copied ? (
-          <motion.div animate={{ opacity: 1, y: 0 }} aria-atomic="true" aria-label="Email copied to clipboard" aria-live="polite" className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]" exit={{ opacity: 0, y: 8 }} initial={{ opacity: 0, y: 8 }} role="status">
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            aria-atomic="true"
+            aria-label="Email copied to clipboard"
+            aria-live="polite"
+            className="pointer-events-none fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]"
+            exit={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 8 }}
+            role="status"
+          >
             <Check aria-hidden="true" size={15} /> Email copied to clipboard
           </motion.div>
         ) : null}

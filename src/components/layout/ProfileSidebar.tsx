@@ -41,7 +41,12 @@ export function ProfileSidebar() {
           </div>
 
           <div className="mt-5 space-y-2">
-            <h1 className="font-display text-[1.35rem] font-extrabold leading-[1.08] tracking-[-0.06em] text-ink">{portfolioData.profile.name}</h1>
+            <a
+              className="block font-display text-[1.35rem] font-extrabold leading-[1.08] tracking-[-0.06em] text-ink transition-opacity hover:opacity-85"
+              href={sitePath("/")}
+            >
+              {portfolioData.profile.name}
+            </a>
             <p className="text-sm leading-6 text-muted">{portfolioData.profile.role}</p>
           </div>
 
@@ -122,14 +127,14 @@ export function ProfileSidebar() {
             Resume <ArrowUpRight aria-hidden="true" size={14} />
           </a>
         </div>
-        <nav aria-label="Mobile portfolio sections" className="mt-3 -mx-1 flex gap-1 overflow-x-auto pb-1">
+        <nav aria-label="Mobile portfolio sections" className="mt-3 -mx-1 flex gap-1.5 overflow-x-auto pb-1">
           {portfolioData.topNavigation.map((item) => {
             const isActive = activeSection === item.href;
 
             return (
               <a
                 aria-current={isActive ? "page" : undefined}
-                className={`flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink" : "font-semibold text-muted"}`}
+                className={`flex min-h-11 shrink-0 items-center rounded-full px-3.5 text-xs transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink" : "font-semibold text-muted"}`}
                 href={sitePath(item.href)}
                 key={item.href}
               >

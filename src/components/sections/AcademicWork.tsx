@@ -1,128 +1,156 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Github, Mail, X } from "lucide-react";
 import type { AcademicWork } from "@/data/portfolio";
 import { portfolioData } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
 
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export function AcademicWork() {
-  const { sectionCopy, filters, academicWorks } = portfolioData;
-  const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>(filters[0]);
+  const { sectionCopy, academicWorks } = portfolioData;
   const [selectedWork, setSelectedWork] = useState<AcademicWork | null>(null);
   const reduceMotion = useReducedMotion();
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
-  const visibleWorks = useMemo(() => {
-    if (activeFilter === "All") return academicWorks;
-    return academicWorks.filter((work) => work.category === activeFilter);
-  }, [academicWorks, activeFilter]);
+  const closeModal = () => {
+    setSelectedWork(null);
+  };
 
   useEffect(() => {
     if (!selectedWork) return;
 
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedWork(null);
-    };
-
+    const opener = triggerRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    document.addEventListener("keydown", closeOnEscape);
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      if (closeButtonRef.current) {
+        closeButtonRef.current.focus();
+      } else {
+        dialogRef.current?.focus();
+      }
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setSelectedWork(null);
+        return;
+      }
+
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusables = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      ).filter((el) => el.offsetParent !== null);
+
+      if (focusables.length === 0) {
+        event.preventDefault();
+        dialogRef.current.focus();
+        return;
+      }
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        if (!active || active === first || !dialogRef.current.contains(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (!active || active === last || !dialogRef.current.contains(active)) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("keydown", handleKeyDown);
+      opener?.focus();
     };
   }, [selectedWork]);
 
   return (
     <section aria-labelledby="academic-work-title" className="border-b border-line py-16 sm:py-20 lg:py-24" id="academic-works">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="eyebrow">{sectionCopy.academicWorks.eyebrow}</p>
-          <h2 className="section-title mt-3 font-display text-4xl font-extrabold text-ink sm:text-5xl" id="academic-work-title">
-            <span className="highlight-amber">{sectionCopy.academicWorks.title}</span>
-          </h2>
-          <p className="mt-5 max-w-[600px] text-sm leading-6 text-muted sm:text-base">{sectionCopy.academicWorks.description}</p>
-        </div>
-
-        <div aria-label={sectionCopy.academicWorks.filterLabel} className="flex max-w-full gap-2 overflow-x-auto pb-1" role="group">
-          {filters.map((filter) => {
-            const isActive = activeFilter === filter;
-
-            return (
-              <button
-                aria-pressed={isActive}
-                className={`min-h-10 shrink-0 rounded-full border px-4 text-xs font-bold transition-colors duration-200 ${isActive ? "border-ink bg-ink text-white" : "border-line bg-white text-muted hover:border-ink/30 hover:text-ink"}`}
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                type="button"
-              >
-                {filter}
-              </button>
-            );
-          })}
-        </div>
+      <div className="max-w-[680px]">
+        <p className="eyebrow">{sectionCopy.academicWorks.eyebrow}</p>
+        <h2 className="section-title mt-3 font-display text-4xl font-extrabold text-ink sm:text-5xl" id="academic-work-title">
+          <span className="highlight-amber">{sectionCopy.academicWorks.title}</span>
+        </h2>
+        <p className="mt-5 max-w-[600px] text-sm leading-6 text-muted sm:text-base">{sectionCopy.academicWorks.description}</p>
       </div>
 
-      <motion.div className="mt-9 grid gap-4 md:grid-cols-2" layout>
-        <AnimatePresence initial={false} mode="popLayout">
-          {visibleWorks.map((work, index) => (
-            <motion.article
-              animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              className="group relative flex min-h-[280px] cursor-pointer flex-col rounded-2xl border border-line bg-white p-6 shadow-card transition-colors duration-200 hover:border-ink/30 focus-within:border-ink/40"
-              exit={reduceMotion ? undefined : { opacity: 0, y: 10 }}
-              initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
-              key={work.id}
-              layout
-              transition={{ delay: reduceMotion ? 0 : index * 0.035, duration: 0.32, ease: "easeOut" }}
-            >
-              <div className="flex items-start justify-between gap-5">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#F5F1EB] text-ink">
-                  <Icon name={work.icon} size={21} />
-                </div>
-                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7C8491]">0{index + 1}</span>
+      <div className="mt-9 grid gap-5 md:grid-cols-2">
+        {academicWorks.map((work, index) => (
+          <motion.article
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            className="group relative flex min-h-[280px] cursor-pointer flex-col rounded-2xl border border-line bg-white p-6 shadow-card transition-colors duration-200 hover:border-ink/30 focus-within:border-ink/40"
+            initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
+            key={work.id}
+            transition={{ delay: reduceMotion ? 0 : index * 0.035, duration: 0.32, ease: "easeOut" }}
+          >
+            <div className="flex items-start justify-between gap-5">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#F5F1EB] text-ink">
+                <Icon name={work.icon} size={21} />
               </div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7C8491]">0{index + 1}</span>
+            </div>
 
-              <div className="mt-7">
-                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#7C8491]">{work.category}</p>
-                <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{work.title}</h3>
-                <p className="mt-1 text-xs font-semibold text-muted">{work.context}</p>
-                <p className="mt-4 max-w-[470px] text-sm leading-6 text-muted">{work.summary}</p>
-                <p className="mt-3 text-xs leading-5 text-muted">
-                  <span className="font-semibold text-ink">Focus:</span> {work.outcomes.join(" · ")}
-                </p>
-              </div>
+            <div className="mt-7">
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#7C8491]">{work.category}</p>
+              <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{work.title}</h3>
+              <p className="mt-1 text-xs font-semibold text-muted">{work.context}</p>
+              <p className="mt-4 max-w-[470px] text-sm leading-6 text-muted">{work.summary}</p>
+              <p className="mt-3 text-xs leading-5 text-muted">
+                <span className="font-semibold text-ink">Focus:</span> {work.outcomes.join(" · ")}
+              </p>
+            </div>
 
-              <div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-7">
-                <ul aria-label={`${work.title} technology tags`} className="flex max-w-[70%] flex-wrap gap-2">
-                  {work.tags.map((tag) => <li className="rounded-full bg-[#F8F5F0] px-2.5 py-1 font-mono text-[10px] text-[#7C8491]" key={tag}>{tag}</li>)}
-                </ul>
-                <button
-                  aria-label={`${work.title} — ${sectionCopy.academicWorks.inspectAction}`}
-                  className="inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-ink transition-transform duration-200 after:absolute after:inset-0 after:rounded-2xl after:content-[''] group-hover:translate-x-0.5 focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
-                  onClick={() => setSelectedWork(work)}
-                  type="button"
-                >
-                  {sectionCopy.academicWorks.inspectAction} <ArrowRight aria-hidden="true" size={15} />
-                </button>
-              </div>
-            </motion.article>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+            <div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-7">
+              <ul aria-label={`${work.title} technology tags`} className="flex max-w-[70%] flex-wrap gap-2">
+                {work.tags.map((tag) => <li className="rounded-full bg-[#F8F5F0] px-2.5 py-1 font-mono text-[10px] text-[#7C8491]" key={tag}>{tag}</li>)}
+              </ul>
+              <button
+                aria-label={`${work.title} — ${sectionCopy.academicWorks.inspectAction}`}
+                className="inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-ink transition-transform duration-200 after:absolute after:inset-0 after:rounded-2xl after:content-[''] group-hover:translate-x-0.5 focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
+                onClick={(event) => {
+                  triggerRef.current = event.currentTarget;
+                  setSelectedWork(work);
+                }}
+                type="button"
+              >
+                {sectionCopy.academicWorks.inspectAction} <ArrowRight aria-hidden="true" size={15} />
+              </button>
+            </div>
+          </motion.article>
+        ))}
+      </div>
 
       <AnimatePresence>
         {selectedWork ? (
-          <motion.div animate={{ opacity: 1 }} className="fixed inset-0 z-50 flex items-end justify-center bg-ink/35 p-3 backdrop-blur-[2px] sm:items-center sm:p-8" exit={{ opacity: 0 }} initial={{ opacity: 0 }} onMouseDown={(event) => { if (event.currentTarget === event.target) setSelectedWork(null); }}>
+          <motion.div animate={{ opacity: 1 }} className="fixed inset-0 z-50 flex items-end justify-center bg-ink/35 p-3 backdrop-blur-[2px] sm:items-center sm:p-8" exit={{ opacity: 0 }} initial={{ opacity: 0 }} onMouseDown={(event) => { if (event.currentTarget === event.target) closeModal(); }}>
             <motion.div
               aria-describedby="artifact-modal-description"
               aria-labelledby="artifact-modal-title"
+              aria-modal="true"
               animate={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-              className="max-h-[min(720px,calc(100vh-24px))] w-full max-w-2xl overflow-y-auto rounded-3xl border border-line bg-white p-6 shadow-[0_24px_80px_rgba(20,24,36,0.18)] sm:p-9"
+              className="max-h-[min(720px,calc(100vh-24px))] w-full max-w-2xl overflow-y-auto rounded-3xl border border-line bg-white p-6 shadow-[0_24px_80px_rgba(20,24,36,0.18)] focus:outline-none sm:p-9"
               exit={reduceMotion ? undefined : { opacity: 0, y: 10, scale: 0.98 }}
               initial={reduceMotion ? undefined : { opacity: 0, y: 14, scale: 0.98 }}
+              ref={dialogRef}
               role="dialog"
+              tabIndex={-1}
               transition={{ duration: 0.25, ease: "easeOut" }}
             >
               <div className="flex items-start justify-between gap-6">
@@ -131,7 +159,13 @@ export function AcademicWork() {
                   <h3 className="section-title mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl" id="artifact-modal-title">{selectedWork.title}</h3>
                   <p className="mt-2 text-sm font-semibold text-muted">{selectedWork.context}</p>
                 </div>
-                <button aria-label="Close artifact preview" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-ink/30 hover:text-ink" onClick={() => setSelectedWork(null)} type="button">
+                <button
+                  aria-label="Close project details"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-ink/30 hover:text-ink"
+                  onClick={closeModal}
+                  ref={closeButtonRef}
+                  type="button"
+                >
                   <X aria-hidden="true" size={18} />
                 </button>
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Check, Copy, Github, Linkedin } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail } from "lucide-react";
 import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 
@@ -39,10 +39,22 @@ export function Footer() {
               </span>
             </h2>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <button aria-label={copied ? "Email copied to clipboard" : `Copy ${links.email} email address`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDBA74] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5" onClick={handleCopyEmail} type="button">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDBA74] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5"
+                href={`mailto:${links.email}`}
+              >
+                <Mail aria-hidden="true" size={16} />
+                <span>{links.email}</span>
+              </a>
+              <button
+                aria-label={copied ? "Email copied to clipboard" : `Copy ${links.email} email address`}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+                onClick={handleCopyEmail}
+                type="button"
+              >
                 {copied ? <Check aria-hidden="true" size={16} /> : <Copy aria-hidden="true" size={16} />}
-                {copied ? "Email copied" : editorialFooter.emailLabel}
+                <span>{copied ? "Copied" : "Copy email"}</span>
               </button>
               <a className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDE047] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5" href={links.linkedin} rel="noreferrer" target="_blank">
                 <Linkedin aria-hidden="true" size={16} />

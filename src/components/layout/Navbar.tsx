@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { portfolioData, sitePath } from "@/data/portfolio";
 import { useActiveNav } from "@/components/layout/useActiveNav";
 
@@ -30,7 +30,7 @@ export function Navbar() {
 
       <div className="flex justify-end">
         <a className="flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5" href="#footer">
-          {portfolioData.navigationCta} <ArrowUpRight aria-hidden="true" size={15} />
+          {portfolioData.navigationCta} <ArrowDown aria-hidden="true" size={15} />
         </a>
       </div>
     </div>

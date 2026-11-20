@@ -30,7 +30,7 @@ export interface ExperienceItem {
   id: string;
   organization: string;
   role: string;
-  date: string;
+  date?: string;
   location: string;
   summary: string;
   impact: string[];
@@ -150,15 +150,18 @@ export const portfolioData = {
     academicWorks: {
       eyebrow: "Selected work",
       title: "Academic Works",
-      description: "A collection of research, analytics, software, and systems projects developed through coursework and independent practice.",
-      inspectAction: "Inspect artifact",
+      description: "Research, analytics, database, and algorithms coursework exploring practical software and data systems.",
+      inspectAction: "Project details",
       codeAction: "View code",
       filterLabel: "Filter academic works",
+      walkthroughNote: "Public repository and report links aren't posted for this project yet. Browse other code on GitHub or email me for a walkthrough.",
+      githubAction: "View GitHub profile",
+      requestAction: "Request walkthrough",
     },
     experience: {
       eyebrow: "Where I show up",
       title: "Experience",
-      description: "Work, volunteer, and leadership experiences that have shaped how I collaborate, learn, and deliver.",
+      description: "Campus technical leadership and community roles at De La Salle University.",
     },
   },
   life: {
@@ -314,9 +317,13 @@ export const portfolioData = {
       role: "Associate for Data and Research",
       date: "Oct 2026 – Present",
       location: "De La Salle University",
-      summary: "A student organization role centered on learning, community, and the practical application of data science.",
-      impact: ["Contributed to a student community around data and analytics.", "Supported collaborative learning and technical initiatives.", "Practiced communicating data concepts to a wider student audience."],
-      tags: ["Data Science", "Community", "Leadership"],
+      summary: "Supporting student-led data science research, technical learning, and analytics initiatives.",
+      impact: [
+        "Contribute to applied data and analytics initiatives across the student research team.",
+        "Support peer learning sessions and collaborative technical workshops.",
+        "Translate data and modeling concepts into accessible materials for student audiences.",
+      ],
+      tags: ["Data Science", "Research", "Community"],
       icon: "users",
       current: true,
     },
@@ -324,22 +331,26 @@ export const portfolioData = {
       id: "dlsu-tech-summit",
       organization: "DLSU Tech Summit",
       role: "Executive",
-      date: "Academic organization",
       location: "De La Salle University",
-      summary: "An executive role supporting a student-led technology event and the people, programs, and details behind it.",
-      impact: ["Helped coordinate technical and event-facing responsibilities.", "Worked across a team to keep initiatives moving toward shared outcomes.", "Built confidence in planning, follow-through, and collaboration."],
-      tags: ["Event Operations", "Technology", "Teamwork"],
+      summary: "Coordinating technical programs and event operations for DLSU's student-led technology summit.",
+      impact: [
+        "Coordinate technical program logistics and event-facing deliverables across committees.",
+        "Keep cross-team schedules and operational details aligned from planning through event day.",
+      ],
+      tags: ["Event Operations", "Technology", "Coordination"],
       icon: "calendar",
     },
     {
       id: "lscs-junior-officer",
       organization: "La Salle Computer Society",
       role: "Junior Officer",
-      date: "Academic organization",
       location: "De La Salle University",
-      summary: "A junior leadership role in a computing community, supporting activities that connect students with technology and one another.",
-      impact: ["Supported organization initiatives and student activities.", "Learned to contribute consistently within a volunteer team.", "Strengthened coordination and ownership through hands-on work."],
-      tags: ["Student Leadership", "Computing", "Volunteer Work"],
+      summary: "Supporting student computing programs and community events across the college.",
+      impact: [
+        "Assist in organizing computing workshops, student activities, and technical events.",
+        "Handle committee logistics and execution within a volunteer leadership team.",
+      ],
+      tags: ["Student Leadership", "Computing", "Operations"],
       icon: "graduation-cap",
     },
   ] satisfies ExperienceItem[],

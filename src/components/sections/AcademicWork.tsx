@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Github, Mail, X } from "lucide-react";
 import type { AcademicWork } from "@/data/portfolio";
 import { portfolioData } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
@@ -70,7 +70,7 @@ export function AcademicWork() {
           {visibleWorks.map((work, index) => (
             <motion.article
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              className="group flex min-h-[280px] flex-col rounded-2xl border border-line bg-white p-6 shadow-card transition-colors duration-200 hover:border-ink/30"
+              className="group relative flex min-h-[280px] cursor-pointer flex-col rounded-2xl border border-line bg-white p-6 shadow-card transition-colors duration-200 hover:border-ink/30 focus-within:border-ink/40"
               exit={reduceMotion ? undefined : { opacity: 0, y: 10 }}
               initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
               key={work.id}
@@ -89,14 +89,22 @@ export function AcademicWork() {
                 <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{work.title}</h3>
                 <p className="mt-1 text-xs font-semibold text-muted">{work.context}</p>
                 <p className="mt-4 max-w-[470px] text-sm leading-6 text-muted">{work.summary}</p>
+                <p className="mt-3 text-xs leading-5 text-muted">
+                  <span className="font-semibold text-ink">Focus:</span> {work.outcomes.join(" · ")}
+                </p>
               </div>
 
               <div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-7">
                 <ul aria-label={`${work.title} technology tags`} className="flex max-w-[70%] flex-wrap gap-2">
                   {work.tags.map((tag) => <li className="rounded-full bg-[#F8F5F0] px-2.5 py-1 font-mono text-[10px] text-[#7C8491]" key={tag}>{tag}</li>)}
                 </ul>
-                <button className="inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-ink transition-transform duration-200 group-hover:translate-x-0.5" onClick={() => setSelectedWork(work)} type="button">
-                  {sectionCopy.academicWorks.inspectAction} <ArrowUpRight aria-hidden="true" size={15} />
+                <button
+                  aria-label={`${work.title} — ${sectionCopy.academicWorks.inspectAction}`}
+                  className="inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-ink transition-transform duration-200 after:absolute after:inset-0 after:rounded-2xl after:content-[''] group-hover:translate-x-0.5 focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
+                  onClick={() => setSelectedWork(work)}
+                  type="button"
+                >
+                  {sectionCopy.academicWorks.inspectAction} <ArrowRight aria-hidden="true" size={15} />
                 </button>
               </div>
             </motion.article>
@@ -145,12 +153,45 @@ export function AcademicWork() {
                 </div>
               </div>
 
-              {(selectedWork.reportUrl || selectedWork.repoUrl) ? (
-                <div className="mt-8 flex flex-wrap gap-3 border-t border-line pt-6">
-                  {selectedWork.reportUrl ? <a className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-bold text-white" href={selectedWork.reportUrl} target="_blank" rel="noreferrer">Inspect report <ExternalLink aria-hidden="true" size={15} /></a> : null}
-                  {selectedWork.repoUrl ? <a className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm font-bold text-ink" href={selectedWork.repoUrl} target="_blank" rel="noreferrer">View code <ExternalLink aria-hidden="true" size={15} /></a> : null}
-                </div>
-              ) : null}
+              <div className="mt-8 border-t border-line pt-6">
+                {(selectedWork.reportUrl || selectedWork.repoUrl) ? (
+                  <div className="flex flex-wrap gap-3">
+                    {selectedWork.reportUrl ? (
+                      <a className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-bold text-white" href={selectedWork.reportUrl} target="_blank" rel="noreferrer">
+                        Read report <ArrowUpRight aria-hidden="true" size={15} />
+                      </a>
+                    ) : null}
+                    {selectedWork.repoUrl ? (
+                      <a className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm font-bold text-ink" href={selectedWork.repoUrl} target="_blank" rel="noreferrer">
+                        View code <ArrowUpRight aria-hidden="true" size={15} />
+                      </a>
+                    ) : null}
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <p className="text-sm leading-6 text-muted">{sectionCopy.academicWorks.walkthroughNote}</p>
+                    <div className="flex flex-wrap gap-3">
+                      <a
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5"
+                        href={portfolioData.links.github}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <Github aria-hidden="true" size={15} />
+                        {sectionCopy.academicWorks.githubAction}
+                        <ArrowUpRight aria-hidden="true" size={15} />
+                      </a>
+                      <a
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-bold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+                        href={`mailto:${portfolioData.links.email}?subject=${encodeURIComponent(`Walkthrough request: ${selectedWork.title}`)}`}
+                      >
+                        <Mail aria-hidden="true" size={15} />
+                        {sectionCopy.academicWorks.requestAction}
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         ) : null}

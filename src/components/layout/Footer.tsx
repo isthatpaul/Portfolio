@@ -1,12 +1,13 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Check, Copy, Github, Linkedin, Mail } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 
 export function Footer() {
   const { editorialFooter, links } = portfolioData;
+  const reduceMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
   const copyTimerRef = useRef<number | null>(null);
 
@@ -36,17 +37,10 @@ export function Footer() {
 
   return (
     <>
-      <footer className="mb-0 w-full border-t border-footer-line bg-footer-surface" id="footer">
-        <div className="mx-auto max-w-5xl px-6 pb-10 pt-16 sm:px-12">
+      <footer className="mb-0 w-full scroll-mt-36 border-t border-footer-line bg-footer-surface lg:scroll-mt-6" id="footer">
+        <div className="mx-auto max-w-5xl px-6 pb-10 pt-14 sm:px-12 sm:pt-16">
           <div>
-            <svg aria-hidden="true" className="-ml-1 mb-2 h-11 w-11 text-muted-strong" fill="none" viewBox="0 0 56 56">
-              <circle cx="11" cy="40" fill="var(--color-highlight-amber)" r="6" />
-              <path d="M10 40C16 30 21 23 31 16" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-              <path d="M33 8V18M28 13H38M43 23L49 29M46 26H40" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
-              <circle cx="11" cy="40" fill="var(--color-foreground)" r="2.5" />
-            </svg>
-
-            <h2 className="mt-3 max-w-[680px] font-display text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h2 className="max-w-[680px] font-display text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] text-ink sm:text-5xl lg:text-[3.5rem]">
               <span className="block">{editorialFooter.headline.lineOne}</span>{" "}
               <span className="highlight-sky inline-block">{editorialFooter.headline.lineTwo}</span>
             </h2>
@@ -88,22 +82,20 @@ export function Footer() {
         </div>
       </footer>
 
-      <AnimatePresence>
-        {copied ? (
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            aria-atomic="true"
-            aria-label="Email copied to clipboard"
-            aria-live="polite"
-            className="pointer-events-none fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]"
-            exit={{ opacity: 0, y: 8 }}
-            initial={{ opacity: 0, y: 8 }}
-            role="status"
-          >
-            <Check aria-hidden="true" size={15} /> Email copied to clipboard
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <div aria-atomic="true" aria-live="polite" className="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2" role="status">
+        <AnimatePresence>
+          {copied ? (
+            <motion.div
+              animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              className="flex items-center gap-2 whitespace-nowrap rounded-full bg-ink px-4 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,24,36,0.18)]"
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
+            >
+              <Check aria-hidden="true" size={15} /> Email copied to clipboard
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
     </>
   );
 }

@@ -1,16 +1,75 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Github, GraduationCap, Linkedin, MapPin } from "lucide-react";
 import { portfolioData, sitePath } from "@/data/portfolio";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
-  const { profile, hero } = portfolioData;
+  const [avatarFailed, setAvatarFailed] = useState(false);
+  const { profile, hero, personal, links } = portfolioData;
   const greeting = profile.greeting;
 
   return (
-    <section aria-labelledby="hero-title" className="border-b border-line pb-16 pt-6 sm:pb-20 sm:pt-10 lg:pb-28 lg:pt-10" id="hero">
+    <section aria-labelledby="hero-title" className="border-b border-line pb-16 pt-2 sm:pb-20 sm:pt-4 lg:pb-24 lg:pt-4" id="hero">
+      <div className="mb-8 flex flex-col gap-3 rounded-2xl border border-line bg-white p-4 shadow-card sm:flex-row sm:items-center sm:justify-between lg:hidden">
+        <div className="flex items-center gap-3.5">
+          <div className="avatar-wash relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line">
+            {avatarFailed ? (
+              <span className="font-script text-2xl font-semibold text-ink">{profile.monogram}</span>
+            ) : (
+              <Image
+                alt={`${profile.name} portrait`}
+                className="h-full w-full object-cover object-center"
+                fill
+                priority
+                sizes="48px"
+                src={personal.avatarUrl}
+                onError={() => setAvatarFailed(true)}
+              />
+            )}
+          </div>
+          <div className="min-w-0">
+            <p className="font-display text-sm font-extrabold text-ink">{profile.shortName}</p>
+            <p className="mt-0.5 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-xs text-muted">
+              <span className="inline-flex items-center gap-1">
+                <GraduationCap aria-hidden="true" size={13} />
+                DLSU &apos;28
+              </span>
+              <span aria-hidden="true">·</span>
+              <span className="inline-flex items-center gap-1">
+                <MapPin aria-hidden="true" size={13} />
+                Manila
+              </span>
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <a
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line bg-[#FAF8F5] px-3.5 text-xs font-semibold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+            href={links.github}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <Github aria-hidden="true" size={14} />
+            GitHub
+            <ArrowUpRight aria-hidden="true" size={13} />
+          </a>
+          <a
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line bg-[#FAF8F5] px-3.5 text-xs font-semibold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+            href={links.linkedin}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <Linkedin aria-hidden="true" size={14} />
+            LinkedIn
+            <ArrowUpRight aria-hidden="true" size={13} />
+          </a>
+        </div>
+      </div>
+
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(270px,.8fr)] lg:gap-8">
         <div>
           <motion.p
@@ -52,8 +111,8 @@ export function Hero() {
             <a className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5" href={sitePath("/#academic-works")}>
               {hero.primaryAction} <ArrowRight aria-hidden="true" size={16} />
             </a>
-            <a className="inline-flex min-h-12 items-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-bold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]" href={portfolioData.resumePath} target="_blank" rel="noreferrer">
-              {hero.secondaryAction} <ArrowUpRight aria-hidden="true" size={16} />
+            <a className="inline-flex min-h-12 items-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-bold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]" href="#footer">
+              {portfolioData.navigationCta} <ArrowDown aria-hidden="true" size={16} />
             </a>
           </motion.div>
 

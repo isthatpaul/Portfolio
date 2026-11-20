@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, FileText, Linkedin, MapPin, GraduationCap } from "lucide-react";
+import { ArrowDown, ArrowUpRight, FileText, Github, GraduationCap, Linkedin, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { portfolioData, sitePath } from "@/data/portfolio";
 import { Icon } from "@/components/ui/Icon";
@@ -13,7 +13,7 @@ export function ProfileSidebar() {
 
   return (
     <>
-      <aside className="hidden border-r border-line bg-white shadow-rail lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-[300px] lg:flex-col lg:items-center lg:p-8 lg:pb-16 lg:text-center">
+      <aside className="hidden border-r border-line bg-white shadow-rail lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-[300px] lg:flex-col lg:items-center lg:overflow-y-auto lg:p-8 lg:pb-10 lg:text-center">
         <div className="flex w-full flex-col items-center">
           <div className="avatar-wash relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-line">
             {avatarFailed ? (
@@ -50,19 +50,46 @@ export function ProfileSidebar() {
             <p className="inline-flex items-center gap-2 rounded-full border border-line bg-[#FAF8F5] px-3 py-2"><GraduationCap aria-hidden="true" size={14} /> {portfolioData.profile.education}</p>
           </div>
 
-          <div className="mt-7 flex items-center justify-center gap-2">
-            <a className="flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5" href={portfolioData.resumePath} target="_blank" rel="noreferrer">
+          <div className="mt-6 flex w-full flex-col gap-2.5">
+            <a className="flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-5 text-sm font-bold text-white transition-transform duration-200 hover:-translate-y-0.5" href={portfolioData.resumePath} target="_blank" rel="noreferrer">
               <FileText aria-hidden="true" size={15} />
               Resume
               <ArrowUpRight aria-hidden="true" size={15} />
             </a>
-            <a aria-label="LinkedIn Profile" className="flex h-11 w-11 items-center justify-center rounded-full border border-ink text-ink transition-colors duration-200 hover:bg-[#F5F1EB]" href={portfolioData.links.linkedin} target="_blank" rel="noreferrer" title="LinkedIn Profile">
-              <Linkedin aria-hidden="true" size={17} />
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                className="flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-line bg-white px-3 text-xs font-semibold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+                href={portfolioData.links.github}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <Github aria-hidden="true" size={14} />
+                <span>GitHub</span>
+                <ArrowUpRight aria-hidden="true" size={13} />
+              </a>
+              <a
+                className="flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-line bg-white px-3 text-xs font-semibold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+                href={portfolioData.links.linkedin}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <Linkedin aria-hidden="true" size={14} />
+                <span>LinkedIn</span>
+                <ArrowUpRight aria-hidden="true" size={13} />
+              </a>
+            </div>
+            <a
+              className="flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-line bg-[#FAF8F5] px-4 text-xs font-semibold text-ink transition-colors duration-200 hover:border-ink/30 hover:bg-[#F5F1EB]"
+              href="#footer"
+            >
+              <Mail aria-hidden="true" size={14} />
+              <span>{portfolioData.navigationCta}</span>
+              <ArrowDown aria-hidden="true" size={13} />
             </a>
           </div>
 
-          <nav aria-label="Portfolio sections" className="mt-9 w-full border-t border-line px-4 pt-6 text-left">
-            <ul className="flex w-full flex-col items-start gap-2 text-left">
+          <nav aria-label="Portfolio sections" className="mt-7 w-full border-t border-line pt-6 text-left">
+            <ul className="flex w-full flex-col items-start gap-1.5 text-left">
               {portfolioData.topNavigation.map((item) => {
                 const isActive = activeSection === item.href;
 
@@ -70,7 +97,7 @@ export function ProfileSidebar() {
                   <li className="w-full" key={item.href}>
                     <a
                       aria-current={isActive ? "page" : undefined}
-                      className={`relative flex min-h-11 w-full items-center justify-start gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors duration-200 ${isActive ? "bg-accent font-bold text-ink before:absolute before:left-0 before:top-1/2 before:h-5 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-[#141824]" : "font-semibold text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
+                      className={`flex min-h-11 w-full items-center justify-start gap-3 rounded-xl border px-3.5 py-2 text-left text-sm transition-colors duration-200 ${isActive ? "border-ink/15 bg-accent font-bold text-ink" : "border-transparent font-semibold text-muted hover:bg-[#F8F5F0] hover:text-ink"}`}
                       href={sitePath(item.href)}
                     >
                       <Icon name={item.icon} size={16} />

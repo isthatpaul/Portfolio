@@ -95,9 +95,9 @@ export const portfolioData = {
   },
   topNavigation: [
     { label: "Work", href: "/", icon: "briefcase" as IconName },
-    { label: "Life and all", href: "/life", icon: "route" as IconName },
     { label: "Experience", href: "/#experience", icon: "calendar" as IconName },
     { label: "About", href: "/about", icon: "users" as IconName },
+    { label: "Life and all", href: "/life", icon: "route" as IconName },
   ],
   navigationCta: "Let's talk",
   editorialFooter: {

@@ -40,7 +40,7 @@ export function Footer() {
       <footer className="mb-0 w-full scroll-mt-36 border-t border-footer-line bg-footer-surface lg:scroll-mt-6" id="footer">
         <div className="mx-auto max-w-5xl px-6 pb-10 pt-16 sm:px-12">
           <div>
-            <svg aria-hidden="true" className="-ml-1 mb-2 h-11 w-11 text-[#F59E0B]" fill="none" viewBox="0 0 56 56">
+            <svg aria-hidden="true" className="-ml-1 mb-2 h-11 w-11 text-spark-amber" fill="none" viewBox="0 0 56 56">
               <path d="M10 40C16 30 21 23 31 16" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
               <path d="M33 8V18M28 13H38M43 23L49 29M46 26H40" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
               <circle cx="11" cy="40" fill="currentColor" r="3" />
@@ -57,7 +57,7 @@ export function Footer() {
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 aria-label={copied ? "Email copied to clipboard" : `Copy ${links.email} email address`}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDBA74] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-ink/10 bg-pill-peach px-5 py-2.5 text-sm font-medium text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-pill-peach-hover"
                 onClick={handleCopyEmail}
                 type="button"
               >
@@ -65,7 +65,7 @@ export function Footer() {
                 {copied ? "Email copied" : editorialFooter.emailLabel}
               </button>
               <a
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FDE047] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-ink/10 bg-pill-butter px-5 py-2.5 text-sm font-medium text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-pill-butter-hover"
                 href={links.linkedin}
                 rel="noreferrer"
                 target="_blank"
@@ -75,7 +75,7 @@ export function Footer() {
                 <ArrowUpRight aria-hidden="true" size={15} />
               </a>
               <a
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#BAE6FD] px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-200 hover:-translate-y-0.5"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-ink/10 bg-pill-sky px-5 py-2.5 text-sm font-medium text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-strong"
                 href={links.github}
                 rel="noreferrer"
                 target="_blank"

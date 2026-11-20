@@ -90,8 +90,7 @@ export function Hero() {
             transition={{ delay: 0.08, duration: 0.55, ease: "easeOut" }}
           >
             {hero.headline.lineOne}{" "}
-            <span>from </span>
-            <span className="highlight-sky">data, systems, and curiosity.</span>
+            <span className="highlight-sky">{hero.headline.lineTwo}</span>
           </motion.h1>
 
           <motion.p
@@ -128,7 +127,7 @@ export function Hero() {
         >
           <div className="relative aspect-[1.1/1] overflow-hidden rounded-[28px] border border-line bg-white p-4 shadow-card sm:p-6">
             <svg aria-labelledby="hero-illustration-title" className="h-full w-full" fill="none" role="img" viewBox="0 0 520 470">
-              <title id="hero-illustration-title">{hero.illustrationLabel}</title>
+              <title id="hero-illustration-title">Technical schematic depicting a delay-weighted routing graph, normalized relational database entities, and clustered data points</title>
               <defs>
                 <pattern height="24" id="hero-draft-grid" patternUnits="userSpaceOnUse" width="24">
                   <circle cx="1.5" cy="1.5" fill="#E5E0D8" r="1.25" />

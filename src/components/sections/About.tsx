@@ -38,20 +38,11 @@ export function About() {
                 />
               )}
             </div>
-            <svg aria-hidden="true" className="pointer-events-none absolute -inset-8 z-20 h-[calc(100%+4rem)] w-[calc(100%+4rem)] text-[#525866]" fill="none" viewBox="0 0 320 320">
-              <defs>
-                <path d="M 160 160 m -144 0 a 144 144 0 1 1 288 0 a 144 144 0 1 1 -288 0" id="about-motto-path" />
-              </defs>
-              <text fill="currentColor" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="2.1">
-                <textPath href="#about-motto-path" startOffset="2%">{about.motto}</textPath>
-              </text>
-            </svg>
           </div>
         </div>
 
         <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-[#71717A]">{about.eyebrow}</p>
-          <h1 className="mt-5 max-w-[690px] font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-[#141824] sm:text-5xl" id="about-title">
+          <h1 className="max-w-[690px] font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-[#141824] sm:text-5xl" id="about-title">
             {about.headline}
           </h1>
 

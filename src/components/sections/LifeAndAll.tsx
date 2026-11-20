@@ -145,14 +145,12 @@ export function LifeAndAll() {
   return (
     <section aria-labelledby="life-title" className="px-0 pb-24 pt-10" id="life">
       <div className="max-w-[760px]">
-        <p className="eyebrow">{life.eyebrow}</p>
-        <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-[#141824] sm:text-5xl" id="life-title">
+        <h1 className="font-display text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] text-ink sm:text-5xl" id="life-title">
           {life.galleryHeadline}
         </h1>
-        <p className="mt-5 max-w-2xl text-[15.5px] leading-relaxed text-[#525866] sm:text-base">
+        <p className="mt-5 max-w-[58ch] text-[15.5px] leading-relaxed text-muted sm:text-base">
           {life.gallerySubtitle}
         </p>
-        <p className="script-accent mt-6 text-2xl text-[#141824]">{life.galleryNote}</p>
       </div>
 
       <div className="mt-14 columns-1 gap-8 px-2 sm:columns-2 lg:columns-3" data-testid="life-collage">
@@ -238,12 +236,9 @@ export function LifeAndAll() {
                   src={selectedMoment.imageUrl}
                 />
               </div>
-              <div className="flex flex-wrap items-baseline justify-between gap-3 px-1 pb-1 pt-4 sm:px-2">
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#71717A]">{selectedMoment.category}</p>
-                  <h2 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-[#141824]" id="life-moment-title">{selectedMoment.caption}</h2>
-                </div>
-                <p className="font-script text-xl text-[#525866]">A moment in the margins.</p>
+              <div className="px-1 pb-1 pt-4 sm:px-2">
+                <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-muted-strong">{selectedMoment.category}</p>
+                <h2 className="mt-1.5 font-display text-2xl font-extrabold tracking-[-0.03em] text-ink" id="life-moment-title">{selectedMoment.caption}</h2>
               </div>
             </motion.div>
           </motion.div>

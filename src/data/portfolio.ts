@@ -144,22 +144,18 @@ export const portfolioData = {
     intro: "I build practical software, data-informed tools, and machine learning workflows that help people make sense of complex problems.",
     primaryAction: "Explore my work",
     secondaryAction: "View resume",
-    illustrationLabel: "Line-art illustration of a laptop, books, and a simple systems diagram",
+    illustrationLabel: "Technical schematic depicting a delay-weighted routing graph, normalized relational database entities, and clustered data points",
   },
   sectionCopy: {
     academicWorks: {
-      eyebrow: "Selected work",
       title: "Academic Works",
       description: "Research, analytics, database, and algorithms coursework exploring practical software and data systems.",
       inspectAction: "Project details",
-      codeAction: "View code",
-      filterLabel: "Filter academic works",
       walkthroughNote: "Public repository and report links aren't posted for this project yet. Browse other code on GitHub or email me for a walkthrough.",
       githubAction: "View GitHub profile",
       requestAction: "Request walkthrough",
     },
     experience: {
-      eyebrow: "Where I show up",
       title: "Experience",
       description: "Campus technical leadership and community roles at De La Salle University.",
     },
@@ -263,7 +259,6 @@ export const portfolioData = {
       tapeColor: "pink",
     },
   ] satisfies LifeMoment[],
-  filters: ["All", "AI & Research", "Software & Systems", "Data Analytics"] as const,
   academicWorks: [
     {
       id: "f1-predictive-model",
@@ -354,22 +349,6 @@ export const portfolioData = {
       icon: "graduation-cap",
     },
   ] satisfies ExperienceItem[],
-  contact: {
-    detailLabels: {
-      email: "Email",
-      location: "Location",
-      linkedin: "LinkedIn",
-      github: "GitHub",
-    },
-    form: {
-      nameLabel: "Name",
-      emailLabel: "Email",
-      messageLabel: "Message",
-      namePlaceholder: "Your name",
-      emailPlaceholder: "you@email.com",
-      messagePlaceholder: "Tell me about your project, opportunity, or question...",
-    },
-  },
 } as const;
 
 export type PortfolioData = typeof portfolioData;

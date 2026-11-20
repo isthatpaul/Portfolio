@@ -42,7 +42,7 @@ export function ProfileSidebar() {
 
           <div className="mt-5 space-y-2">
             <a
-              className="block font-display text-[1.35rem] font-extrabold leading-[1.08] tracking-[-0.06em] text-ink transition-opacity hover:opacity-85"
+              className="block font-display text-[1.35rem] font-extrabold leading-[1.12] tracking-[-0.03em] text-ink transition-opacity hover:opacity-85"
               href={sitePath("/")}
             >
               {portfolioData.profile.name}
@@ -120,8 +120,8 @@ export function ProfileSidebar() {
       <div className="sticky top-0 z-40 border-b border-line bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
         <div className="flex items-center justify-between gap-3">
           <a href={sitePath("/")} className="flex min-h-11 items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-bold tracking-[-0.08em] text-white">{portfolioData.profile.monogram}</span>
-            <span className="font-display text-sm font-bold tracking-[-0.04em] text-ink">{portfolioData.profile.shortName}</span>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-bold tracking-[-0.02em] text-white">{portfolioData.profile.monogram}</span>
+            <span className="font-display text-sm font-bold tracking-[-0.025em] text-ink">{portfolioData.profile.shortName}</span>
           </a>
           <a className="flex min-h-11 items-center gap-1 rounded-full bg-ink px-4 text-xs font-bold text-white" href={portfolioData.resumePath} target="_blank" rel="noreferrer">
             Resume <ArrowUpRight aria-hidden="true" size={14} />

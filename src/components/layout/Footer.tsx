@@ -46,13 +46,9 @@ export function Footer() {
               <circle cx="11" cy="40" fill="var(--color-foreground)" r="2.5" />
             </svg>
 
-            <p className="eyebrow">{editorialFooter.eyebrow}</p>
-            <h2 className="mt-4 max-w-[680px] font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
-              <span className="block">{editorialFooter.headline.lineOne}</span>
-              <span className="relative isolate inline-block w-fit">
-                <span aria-hidden="true" className="absolute bottom-[0.06em] left-0 right-0 top-[46%] -z-10 -rotate-1 rounded-[45%_55%_48%_52%] bg-accent" />
-                {editorialFooter.headline.lineTwo}
-              </span>
+            <h2 className="mt-3 max-w-[680px] font-display text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] text-ink sm:text-5xl lg:text-[3.5rem]">
+              <span className="block">{editorialFooter.headline.lineOne}</span>{" "}
+              <span className="highlight-sky inline-block">{editorialFooter.headline.lineTwo}</span>
             </h2>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">

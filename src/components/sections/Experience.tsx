@@ -10,9 +10,8 @@ export function Experience() {
   return (
     <section aria-labelledby="experience-title" className="py-16 sm:py-20 lg:py-24" id="experience">
       <div className="max-w-[850px]">
-        <p className="eyebrow">{sectionCopy.experience.eyebrow}</p>
-        <h2 className="section-title mt-3 font-display text-4xl font-extrabold text-ink sm:text-5xl" id="experience-title">{sectionCopy.experience.title}</h2>
-        <p className="mt-5 max-w-[610px] text-sm leading-6 text-muted sm:text-base">{sectionCopy.experience.description}</p>
+        <h2 className="section-title font-display text-4xl font-extrabold text-ink sm:text-5xl" id="experience-title">{sectionCopy.experience.title}</h2>
+        <p className="mt-5 max-w-[58ch] text-sm leading-6 text-muted sm:text-base">{sectionCopy.experience.description}</p>
       </div>
 
       <div className="mt-12 space-y-0 sm:mt-16">
@@ -28,9 +27,10 @@ export function Experience() {
               <span aria-hidden="true" className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full border-2 border-white bg-ink ring-1 ring-ink/10" />
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-xs font-medium uppercase tracking-[0.1em] text-muted-strong">{item.organization}</p>
-                  <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{item.role}</h3>
-                  <p className="mt-1 text-xs font-semibold text-muted">{item.location}</p>
+                  <h3 className="font-display text-xl font-extrabold tracking-[-0.03em] text-ink sm:text-2xl">{item.role}</h3>
+                  <p className="mt-1 text-sm font-semibold text-muted">
+                    {item.organization} <span aria-hidden="true" className="text-muted-strong">·</span> {item.location}
+                  </p>
                 </div>
                 {(item.date || item.current) ? (
                   <div className="flex flex-wrap items-center gap-2.5">

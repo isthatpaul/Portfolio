@@ -84,11 +84,10 @@ export function AcademicWork() {
   return (
     <section aria-labelledby="academic-work-title" className="border-b border-line py-16 sm:py-20 lg:py-24" id="academic-works">
       <div className="max-w-[680px]">
-        <p className="eyebrow">{sectionCopy.academicWorks.eyebrow}</p>
-        <h2 className="section-title mt-3 font-display text-4xl font-extrabold text-ink sm:text-5xl" id="academic-work-title">
+        <h2 className="section-title font-display text-4xl font-extrabold text-ink sm:text-5xl" id="academic-work-title">
           <span className="highlight-amber">{sectionCopy.academicWorks.title}</span>
         </h2>
-        <p className="mt-5 max-w-[600px] text-sm leading-6 text-muted sm:text-base">{sectionCopy.academicWorks.description}</p>
+        <p className="mt-5 max-w-[58ch] text-sm leading-6 text-muted sm:text-base">{sectionCopy.academicWorks.description}</p>
       </div>
 
       <div className="mt-9 grid gap-5 md:grid-cols-2">
@@ -100,38 +99,39 @@ export function AcademicWork() {
             key={work.id}
             transition={{ delay: reduceMotion ? 0 : index * 0.035, duration: 0.32, ease: "easeOut" }}
           >
-            <div className="flex items-start justify-between gap-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-elevated text-ink">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-elevated text-ink">
                 <Icon name={work.icon} size={21} />
               </div>
-              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-strong">0{index + 1}</span>
+              <span className="font-mono text-xs font-medium uppercase tracking-[0.1em] text-muted-strong">{work.category}</span>
             </div>
 
-            <div className="mt-7">
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.1em] text-muted-strong">{work.category}</p>
-              <h3 className="mt-2 font-display text-xl font-extrabold tracking-[-0.045em] text-ink sm:text-2xl">{work.title}</h3>
+            <div className="mt-6">
+              <h3 className="font-display text-xl font-extrabold tracking-[-0.03em] text-ink sm:text-2xl">{work.title}</h3>
               <p className="mt-1 text-xs font-semibold text-muted">{work.context}</p>
-              <p className="mt-4 max-w-[470px] text-sm leading-6 text-muted">{work.summary}</p>
+              <p className="mt-4 max-w-[48ch] text-sm leading-6 text-muted">{work.summary}</p>
               <p className="mt-3 text-xs leading-5 text-muted">
                 <span className="font-semibold text-ink">Focus:</span> {work.outcomes.join(" · ")}
               </p>
             </div>
 
-            <div className="mt-auto flex flex-wrap items-end justify-between gap-4 pt-7">
-              <ul aria-label={`${work.title} technology tags`} className="flex max-w-[70%] flex-wrap gap-2">
+            <div className="mt-auto space-y-4 pt-6">
+              <ul aria-label={`${work.title} technology tags`} className="flex flex-wrap gap-2">
                 {work.tags.map((tag) => <li className="rounded-full border border-line/80 bg-chip px-3 py-1 font-mono text-xs text-muted-strong" key={tag}>{tag}</li>)}
               </ul>
-              <button
-                aria-label={`${work.title} — ${sectionCopy.academicWorks.inspectAction}`}
-                className="inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-ink transition-transform duration-200 after:absolute after:inset-0 after:rounded-2xl after:content-[''] group-hover:translate-x-0.5 focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
-                onClick={(event) => {
-                  triggerRef.current = event.currentTarget;
-                  setSelectedWork(work);
-                }}
-                type="button"
-              >
-                {sectionCopy.academicWorks.inspectAction} <ArrowRight aria-hidden="true" size={15} />
-              </button>
+              <div className="flex items-center justify-end border-t border-line/70 pt-3">
+                <button
+                  aria-label={`${work.title} — ${sectionCopy.academicWorks.inspectAction}`}
+                  className="inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-ink transition-transform duration-200 after:absolute after:inset-0 after:rounded-2xl after:content-[''] group-hover:translate-x-0.5 focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
+                  onClick={(event) => {
+                    triggerRef.current = event.currentTarget;
+                    setSelectedWork(work);
+                  }}
+                  type="button"
+                >
+                  {sectionCopy.academicWorks.inspectAction} <ArrowRight aria-hidden="true" size={15} />
+                </button>
+              </div>
             </div>
           </motion.article>
         ))}
@@ -155,9 +155,8 @@ export function AcademicWork() {
             >
               <div className="flex items-start justify-between gap-6">
                 <div>
-                  <p className="eyebrow">{selectedWork.category}</p>
-                  <h3 className="section-title mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl" id="artifact-modal-title">{selectedWork.title}</h3>
-                  <p className="mt-2 text-sm font-semibold text-muted">{selectedWork.context}</p>
+                  <h3 className="section-title font-display text-3xl font-extrabold text-ink sm:text-4xl" id="artifact-modal-title">{selectedWork.title}</h3>
+                  <p className="mt-2 text-sm font-semibold text-muted">{selectedWork.context} · {selectedWork.category}</p>
                 </div>
                 <button
                   aria-label="Close project details"
